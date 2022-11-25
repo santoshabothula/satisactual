@@ -1,0 +1,6 @@
+select 	num_message as NumMessage,
+		txt_user_message as TxtUserMessage
+from sys_user_messages
+where cod_language = :lang
+and cod_rec_status = 'A'
+order by num_message

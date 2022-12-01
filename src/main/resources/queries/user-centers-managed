@@ -1,6 +1,0 @@
-select 	l.id_center as IdCenter,
-		l.txt_center_name as TxtCenterName
-from sec_user_span_derived o, lon_center_master l
-where o.cod_org_unit = l.cod_center_branch
-and l.cod_rec_status = 'A'
-and o.txt_login_id = :txtLoginId

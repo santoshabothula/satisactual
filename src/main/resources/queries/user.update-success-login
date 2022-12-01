@@ -1,3 +1,0 @@
-UPDATE sec_user_master
-SET flg_user_logged_in = 'Y', num_failed_pwd = 0, dat_last_login = date_format(now(), '%Y-%m-%d')
-WHERE txt_login_id=:txtLoginId

@@ -1,0 +1,8 @@
+
+application:
+  access-details: RKOVNQX0f/Dy0KDGkvCnNkRVqU4GgsrZMW5bLNzrkKqcgnnPnLssnk7Vj7sFZ7at/4lCqa+/oXkC7ndx9oJKNHsYIwwIwP8L2fRxaGTSWJvJwSLUoV7o7eHZbJzgOfNmhFbkCpHdGjKUZJIcmmAXLQ==,h156PQkkmiK8Y37AOGA41Q==,ZZR6i+rCXUpP/jxpARS9Qg==,tMAix7Js6GApMxy3DHB4R28If2hZkSoI4p1OFZ1cqU8=,aqq0MNZp99pSLUyoHGsCBg3DllTpCj7VzpDnxOV4BT8=,hc3Rghiz5wOL3sBkcx5gFw==,/fbvSf2aANW0nvYPhUkdDg==,xk33eDmhSWyLbFwZAyzgpW/KHDDElknv567Ldsb+G5w=,R5SJNNt0YRD/vR6mIV1lqw==,1pOydbUmpX/8kWLEjJ+P4w==,AK/tr7C0sK6zpL3BY5GR6g==,pkwmfkUbB1E0/F/sdz1kpw==,TGu01hsaF0wySvmmQ182AQ==,w2I8iqZGwYkabml7GnWVLNdKmu3vFDLtqMm8Y33TR0bZ154iBQbOqsl/joA4wckW,0RZLlaMemwj68YYCdImDJLOf0RKBsk5jCS1WxidG3wY=,gATaA4znJdj5TOy4kq4UMa8o/asTElu1uuvvVUPyCFk=,7au40htEqKtkNvPuk1GySQ==
+  jwt:
+    key: jxgEQe.XHuPq8VdbyYFNkAN.dudQ0903YUn4
+    issuer: data_wise_prod
+    expiration-limit: 300000
+    subject: data_wise_prod_token

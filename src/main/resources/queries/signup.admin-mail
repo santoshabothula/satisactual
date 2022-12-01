@@ -1,0 +1,9 @@
+Select s.txt_login_id, s.txt_user_fname, s.txt_user_lname, s.txt_user_email_id, max(s.txt_user_email_id ) as user_email_id
+from   sec_user_master s, sec_user_roles sur, sec_user_x_roles suxr
+where  s.txt_login_id= suxr.txt_login_id
+and    s.cod_rec_status='A'
+and    sur.cod_user_role =suxr.cod_user_role
+and    sur.flg_sec_admin = 'Y'
+and    s.id_parent_company_3rdparty = 0
+and    sur.cod_rec_status='A'
+and    suxr.cod_rec_status='A'

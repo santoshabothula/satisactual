@@ -1,0 +1,4 @@
+SELECT id_third_party
+FROM   mst_third_parties mtp
+WHERE  txt_third_party_name = :txtThirdPartyName
+and    cod_rec_status ='A'

@@ -1,0 +1,3 @@
+select txt_user_email_id, txt_user_mobile_phone
+from sec_user_master
+where txt_user_email_id = :txtUserEmailId

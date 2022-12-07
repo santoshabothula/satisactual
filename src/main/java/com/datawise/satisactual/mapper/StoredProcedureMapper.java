@@ -37,7 +37,7 @@ public class StoredProcedureMapper {
         campaignDetails.setEnuCampaignStatus(convertToString.apply(row,"enu_campaign_status"));
         campaignDetails.setTxtCampMgrId(convertToString.apply(row,"txt_camp_mgr_id"));
         campaignDetails.setTxtCampMgrName(convertToString.apply(row,"txt_camp_mgr_name"));
-        campaignDetails.setIdCommissionedByThirdparty(convertToBigInteger.apply(row,"id_commissioned_by_thirdparty"));
+        campaignDetails.setIdCommissionedByThirdParty(convertToBigInteger.apply(row,"id_commissioned_by_thirdparty"));
         campaignDetails.setTxtThirdPartyName(convertToString.apply(row,"txt_third_party_name"));
         campaignDetails.setTxtThirdPartyShortName(convertToString.apply(row,"txt_third_party_short_name"));
         campaignDetails.setBinLogoToDisplay(convertToString.apply(row,"bin_logo_to_display"));
@@ -68,7 +68,7 @@ public class StoredProcedureMapper {
         waveDetails.setTxtQuestionnaireName(convertToString.apply(row,"txt_questionnaire_name"));
         waveDetails.setFlgAssessment((convertToString.apply(row,"flg_assessment")));
         waveDetails.setTxtPrintFormatFile(convertToString.apply(row,"txt_print_format_file"));
-        waveDetails.setNumTotResponseReqd(convertToInteger.apply(row,"num_tot_response_reqd"));
+        waveDetails.setNumTotResponseReq(convertToInteger.apply(row,"num_tot_response_reqd"));
         waveDetails.setNumEscalationLevels(convertToShort.apply(row,"num_escalation_levels"));
         waveDetails.setNumHoursToEscalation(convertToShort.apply(row,"num_hours_to_escalation"));
         waveDetails.setNumLowRatingBelow(convertToShort.apply(row,"num_low_rating_below"));

@@ -1,5 +1,9 @@
 package com.datawise.satisactual.service;
 
+import com.datawise.satisactual.mapper.StoredProcedureMapper;
+import com.datawise.satisactual.model.CommonPayload;
+import com.datawise.satisactual.model.ReportNoteDetails;
+import com.datawise.satisactual.model.ReportNoteRequest;
 import com.datawise.satisactual.model.ReportRequest;
 import com.datawise.satisactual.repository.StoredProcedureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +71,24 @@ public class ReportService {
             }
             return list;
         });
+    }
+
+    public List<ReportNoteDetails> findReportNoteDetails(CommonPayload payload){
+        return StoredProcedureMapper.mapReportNote(storedProcedureRepository.findReportsNotes(payload.getPinIdCampaign(), payload.getPinIdCampaignWave()));
+    }
+
+    public void updateReportNotes(ReportNoteRequest request){
+        storedProcedureRepository.updateReportNotes(
+                request.getPinIdCampaign(),
+                request.getPinIdCampaignWave(),
+                request.getPinIdQuestion(),
+                request.getPinTxtSectionName(),
+                request.getPinTxtAuthorId(),
+                request.getPinTxtNote(),
+                request.getPinDatActionDue(),
+                request.getPinFlgIncludeInReport(),
+                request.getPinTxtResolutionNote()
+        );
+
     }
 }

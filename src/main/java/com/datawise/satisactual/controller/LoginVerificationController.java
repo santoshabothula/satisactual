@@ -27,7 +27,7 @@ import java.util.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/login")
 @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @CrossOrigin
 public class LoginVerificationController {

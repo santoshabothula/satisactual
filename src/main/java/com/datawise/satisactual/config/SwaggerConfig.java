@@ -24,10 +24,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Configuration
 @ConfigurationProperties("app.api")
@@ -47,12 +44,12 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage(basePackage))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
-                .securityContexts(Arrays.asList(securityContext()))
-                .securitySchemes(Arrays.asList(basicAuthScheme()));
+                .securityContexts(Collections.singletonList(securityContext()))
+                .securitySchemes(List.of(basicAuthScheme()));
     }
 
     private ApiInfo apiInfo() {
@@ -83,7 +80,7 @@ public class SwaggerConfig {
 
     private SecurityContext securityContext() {
         return SecurityContext.builder()
-                .securityReferences(Arrays.asList(basicAuthReference()))
+                .securityReferences(List.of(basicAuthReference()))
                 .forPaths(PathSelectors.ant("/login"))
                 .build();
     }

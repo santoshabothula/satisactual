@@ -1,4 +1,4 @@
-package com.datawise.satisactual.auth;
+package com.datawise.satisactual.controller;
 
 import com.datawise.satisactual.custom.models.*;
 import com.datawise.satisactual.entities.BlockedIp;
@@ -16,6 +16,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +29,8 @@ import java.util.*;
 @RestController
 @RequestMapping("/api/login")
 @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class LoginVerification {
+@CrossOrigin
+public class LoginVerificationController {
 
     @Autowired
     private BlockedIpRepository blockedIpRepository;

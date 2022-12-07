@@ -29,7 +29,7 @@ public class SecurityConfiguration {
                 .antMatchers("/api/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic().and().csrf().disable().build();
+                .httpBasic().and().cors().and().csrf().disable().build();
     }
 
     @Bean

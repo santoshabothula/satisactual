@@ -14,4 +14,7 @@ public class CommonPayload {
     @JsonProperty("pin_id_campaign")
     private String pinIdCampaign;
 
+    @JsonProperty("pin_id_campaign_wave")
+    private String pinIdCampaignWave;
+
 }

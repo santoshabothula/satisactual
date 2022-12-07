@@ -1,8 +1,7 @@
 package com.datawise.satisactual.service;
 
 import com.datawise.satisactual.mapper.StoredProcedureMapper;
-import com.datawise.satisactual.model.CampaignDetails;
-import com.datawise.satisactual.model.WaveDetails;
+import com.datawise.satisactual.model.*;
 import com.datawise.satisactual.repository.StoredProcedureRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

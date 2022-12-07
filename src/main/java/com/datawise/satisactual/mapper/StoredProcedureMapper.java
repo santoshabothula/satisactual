@@ -1,6 +1,7 @@
 package com.datawise.satisactual.mapper;
 
 import com.datawise.satisactual.model.CampaignDetails;
+import com.datawise.satisactual.model.ReportNoteDetails;
 import com.datawise.satisactual.model.WaveDetails;
 import org.springframework.util.CollectionUtils;
 
@@ -9,6 +10,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 public class StoredProcedureMapper {
@@ -21,23 +24,23 @@ public class StoredProcedureMapper {
 
     public static CampaignDetails mapCampaign(Tuple row) {
         CampaignDetails campaignDetails = new CampaignDetails();
-        campaignDetails.setTxtCampaignName((String) row.get("txt_campaign_name"));
-        campaignDetails.setTxtCampaignTypeDesc((String) row.get("txt_campaign_type_desc"));
-        campaignDetails.setIdCampaign((BigInteger) row.get("id_campaign"));
-        campaignDetails.setCodCampaignType((String) row.get("cod_campaign_type"));
-        campaignDetails.setTxtCampaignShortCode((String) row.get("txt_campaign_short_code"));
-        campaignDetails.setFlgCurrentCampaign((String) row.get("flg_current_campaign"));
-        campaignDetails.setDatStart((Date) row.get("dat_start"));
-        campaignDetails.setDatEnd((Date) row.get("dat_end"));
-        campaignDetails.setTxtCampaignTitle((String) row.get("txt_campaign_title"));
-        campaignDetails.setTxtCampaignSubtitle((String) row.get("txt_campaign_subtitle"));
-        campaignDetails.setEnuCampaignStatus(String.valueOf(row.get("enu_campaign_status")));
-        campaignDetails.setTxtCampMgrId((String) row.get("txt_camp_mgr_id"));
-        campaignDetails.setTxtCampMgrName((String) row.get("txt_camp_mgr_name"));
-        campaignDetails.setIdCommissionedByThirdparty((BigInteger) row.get("id_commissioned_by_thirdparty"));
-        campaignDetails.setTxtThirdPartyName((String) row.get("txt_third_party_name"));
-        campaignDetails.setTxtThirdPartyShortName((String) row.get("txt_third_party_short_name"));
-        campaignDetails.setBinLogoToDisplay((String) row.get("bin_logo_to_display"));
+        campaignDetails.setTxtCampaignName(convertToString.apply(row,"txt_campaign_name"));
+        campaignDetails.setTxtCampaignTypeDesc(convertToString.apply(row,"txt_campaign_type_desc"));
+        campaignDetails.setIdCampaign(convertToBigInteger.apply(row,"id_campaign"));
+        campaignDetails.setCodCampaignType(convertToString.apply(row,"cod_campaign_type"));
+        campaignDetails.setTxtCampaignShortCode(convertToString.apply(row,"txt_campaign_short_code"));
+        campaignDetails.setFlgCurrentCampaign(convertToString.apply(row,"flg_current_campaign"));
+        campaignDetails.setDatStart(convertToDate.apply(row,"dat_start"));
+        campaignDetails.setDatEnd(convertToDate.apply(row,"dat_end"));
+        campaignDetails.setTxtCampaignTitle(convertToString.apply(row,"txt_campaign_title"));
+        campaignDetails.setTxtCampaignSubtitle(convertToString.apply(row,"txt_campaign_subtitle"));
+        campaignDetails.setEnuCampaignStatus(convertToString.apply(row,"enu_campaign_status"));
+        campaignDetails.setTxtCampMgrId(convertToString.apply(row,"txt_camp_mgr_id"));
+        campaignDetails.setTxtCampMgrName(convertToString.apply(row,"txt_camp_mgr_name"));
+        campaignDetails.setIdCommissionedByThirdparty(convertToBigInteger.apply(row,"id_commissioned_by_thirdparty"));
+        campaignDetails.setTxtThirdPartyName(convertToString.apply(row,"txt_third_party_name"));
+        campaignDetails.setTxtThirdPartyShortName(convertToString.apply(row,"txt_third_party_short_name"));
+        campaignDetails.setBinLogoToDisplay(convertToString.apply(row,"bin_logo_to_display"));
         return campaignDetails;
     }
 
@@ -49,29 +52,64 @@ public class StoredProcedureMapper {
 
     public static WaveDetails mapWave(Tuple row) {
         WaveDetails waveDetails = new WaveDetails();
-        waveDetails.setIdCampaign((BigInteger) row.get("id_campaign"));
-        waveDetails.setIdCampaignWave((BigInteger) row.get("id_campaign_wave"));
-        waveDetails.setTxtCampaignWaveName(String.valueOf(row.get("txt_campaign_wave_name")));
-        waveDetails.setIdContactList((BigInteger) row.get("id_contact_list"));
-        waveDetails.setTxtContactListName(String.valueOf(row.get("txt_contact_list_name")));
-        waveDetails.setDatWaveStart((Date) row.get("dat_wave_start"));
-        waveDetails.setDatWaveEnd((Date) row.get("dat_wave_end"));
-        waveDetails.setFlgCurrentWave(String.valueOf(row.get("flg_current_wave")));
-        waveDetails.setFlgFutureWave(String.valueOf(row.get("flg_future_wave")));
-        waveDetails.setFlgExpiredWave(String.valueOf(row.get("flg_expired_wave")));
-        waveDetails.setTxtWaveDeliveryHeadId(String.valueOf(row.get("txt_wave_delivery_head_id")));
-        waveDetails.setTxtWaveRequisitionerId(String.valueOf(row.get("txt_wave_requisitioner_id")));
-        waveDetails.setIdQuestionnaire((BigInteger) row.get("id_questionnaire"));
-        waveDetails.setTxtQuestionnaireName(String.valueOf(row.get("txt_questionnaire_name")));
-        waveDetails.setFlgAssessment(String.valueOf(row.get("flg_assessment")));
-        waveDetails.setTxtPrintFormatFile(String.valueOf(row.get("txt_print_format_file")));
-        waveDetails.setNumTotResponseReqd((Integer) row.get("num_tot_response_reqd"));
-        waveDetails.setNumEscalationLevels((Short) row.get("num_escalation_levels"));
-        waveDetails.setNumHoursToEscalation((Short) row.get("num_hours_to_escalation"));
-        waveDetails.setNumLowRatingBelow((Short) row.get("num_low_rating_below"));
-        waveDetails.setNumHighRatingAbove((Short) row.get("num_high_rating_above"));
-        waveDetails.setCodCssTheme(String.valueOf(row.get("cod_css_theme")));
-        waveDetails.setFlgTestWave(String.valueOf(row.get("flg_test_wave")));
+        waveDetails.setIdCampaign(convertToBigInteger.apply(row, "id_campaign"));
+        waveDetails.setIdCampaignWave(convertToBigInteger.apply(row,"id_campaign_wave"));
+        waveDetails.setTxtCampaignWaveName(convertToString.apply(row,"txt_campaign_wave_name"));
+        waveDetails.setIdContactList(convertToBigInteger.apply(row,"id_contact_list"));
+        waveDetails.setTxtContactListName(convertToString.apply(row,"txt_contact_list_name"));
+        waveDetails.setDatWaveStart(convertToDate.apply(row,"dat_wave_start"));
+        waveDetails.setDatWaveEnd(convertToDate.apply(row,"dat_wave_end"));
+        waveDetails.setFlgCurrentWave(convertToString.apply(row,"flg_current_wave"));
+        waveDetails.setFlgFutureWave(convertToString.apply(row,"flg_future_wave"));
+        waveDetails.setFlgExpiredWave(convertToString.apply(row,"flg_expired_wave"));
+        waveDetails.setTxtWaveDeliveryHeadId(convertToString.apply(row,"txt_wave_delivery_head_id"));
+        waveDetails.setTxtWaveRequisitionerId(convertToString.apply(row,"txt_wave_requisitioner_id"));
+        waveDetails.setIdQuestionnaire(convertToBigInteger.apply(row,"id_questionnaire"));
+        waveDetails.setTxtQuestionnaireName(convertToString.apply(row,"txt_questionnaire_name"));
+        waveDetails.setFlgAssessment((convertToString.apply(row,"flg_assessment")));
+        waveDetails.setTxtPrintFormatFile(convertToString.apply(row,"txt_print_format_file"));
+        waveDetails.setNumTotResponseReqd(convertToInteger.apply(row,"num_tot_response_reqd"));
+        waveDetails.setNumEscalationLevels(convertToShort.apply(row,"num_escalation_levels"));
+        waveDetails.setNumHoursToEscalation(convertToShort.apply(row,"num_hours_to_escalation"));
+        waveDetails.setNumLowRatingBelow(convertToShort.apply(row,"num_low_rating_below"));
+        waveDetails.setNumHighRatingAbove(convertToShort.apply(row,"num_high_rating_above"));
+        waveDetails.setCodCssTheme((convertToString.apply(row,"cod_css_theme")));
+        waveDetails.setFlgTestWave((convertToString.apply(row,"flg_test_wave")));
         return waveDetails;
     }
+
+    public static List<ReportNoteDetails> mapReportNote(List<Tuple> row) {
+        List<ReportNoteDetails> reportNoteDetails = new ArrayList<>();
+        if(CollectionUtils.isEmpty(row)) return reportNoteDetails;
+        return row.stream().map(StoredProcedureMapper::mapReportNote).collect(Collectors.toList());
+    }
+
+    public static ReportNoteDetails mapReportNote(Tuple row) {
+        ReportNoteDetails reportnotedetails = new ReportNoteDetails();
+        reportnotedetails.setIdQuestion(convertToBigInteger.apply(row,"id_question"));
+        reportnotedetails.setTxtSectionName(convertToString.apply(row,"txt_section_name"));
+        reportnotedetails.setTxtAuthorId(convertToString.apply(row,"txt_author_id"));
+        reportnotedetails.setTxtNote(convertToString.apply(row,"txt_note"));
+        reportnotedetails.setDatActionDue(convertToString.apply(row,"dat_action_due"));
+        reportnotedetails.setFlgIncludeInReport(convertToString.apply(row,"flg_include_in_report"));
+        reportnotedetails.setFlgResolved(convertToString.apply(row,"flg_include_in_report"));
+        reportnotedetails.setDatTimeResolved(convertToDate.apply(row,"dat_time_resolved"));
+        reportnotedetails.setTxtResolutionNote(convertToString.apply(row,"txt_resolution_note"));
+        reportnotedetails.setDatTimeAdded(convertToDate.apply(row,"dat_time_added"));
+        reportnotedetails.setDatTimeLastEdited(convertToDate.apply(row,"dat_time_last_edited"));
+        reportnotedetails.setNumQuestionPage(convertToInteger.apply(row, "num_question_page"));
+        reportnotedetails.setNumQuestionSequence(convertToInteger.apply(row,"num_question_sequence"));
+
+        return reportnotedetails;
+    }
+
+    static BiFunction<Tuple, String, BigInteger> convertToBigInteger = (row, key) -> Objects.nonNull(row.get(key)) ? BigInteger.valueOf(Long.parseLong(String.valueOf(row.get(key)))) : null;
+
+    static BiFunction<Tuple, String, Integer> convertToInteger = (row, key) -> Objects.nonNull(row.get(key)) ? Integer.valueOf(String.valueOf(row.get(key))) : null;
+
+    static BiFunction<Tuple, String, Short> convertToShort = (row, key) -> Objects.nonNull(row.get(key)) ? Short.valueOf(String.valueOf(row.get(key))) : null;
+
+    static BiFunction<Tuple, String, String> convertToString = (row, key) -> Objects.nonNull(row.get(key)) ? String.valueOf(row.get(key)) : null;
+
+    static BiFunction<Tuple, String, Date> convertToDate = (row, key) -> Objects.nonNull(row.get(key)) ? Objects.isNull(row.get(key)) ? null : (Date) row.get(key) : null;
 }

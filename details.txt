@@ -18,3 +18,9 @@ IP: 192.168.1.192
 Posr: 3806
 Username: istpldev
 Password: istpl@123
+
+https://github.com/mydatawise/infinity-campaign-report/tree/dev
+https://mydatawise0-my.sharepoint.com/personal/waqar_a_mydatawise_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fwaqar_a_mydatawise_com%2FDocuments%2FProjects%2FSatisActual%2FVinCloudSolutions&ga=1
+https://www.c-sharpcorner.com/article/generate-dynamic-pdf-with-custom-style-in-react/
+https://reactnative.dev/docs/layout-props#borderbottomwidth
+https://v2.react-pdf.org/components#page

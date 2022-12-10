@@ -1,0 +1,20 @@
+
+VPN
+Email: santosh.abothula@gmail.com
+UserID: Santosh
+Password: b!gSoap12
+
+sowjanya
+w!ldFrog56
+
+Connect to Linux:
+ssh root@192.168.1.192
+vijay.kumar@123
+
+
+
+Database
+IP: 192.168.1.192
+Posr: 3806
+Username: istpldev
+Password: istpl@123

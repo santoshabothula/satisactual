@@ -1,7 +1,7 @@
 
 VPN
 Email: santosh.abothula@gmail.com
-UserID: Santosh
+UserID: santosh
 Password: b!gSoap12
 
 sowjanya
@@ -24,3 +24,13 @@ https://mydatawise0-my.sharepoint.com/personal/waqar_a_mydatawise_com/_layouts/1
 https://www.c-sharpcorner.com/article/generate-dynamic-pdf-with-custom-style-in-react/
 https://reactnative.dev/docs/layout-props#borderbottomwidth
 https://v2.react-pdf.org/components#page
+https://mydatawise0-my.sharepoint.com/personal/waqar_a_mydatawise_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fwaqar_a_mydatawise_com%2FDocuments%2FProjects%2FSatisActual%2FVinCloudSolutions&ga=1
+
+java 11.0.17
+node 12
+netbeans
+vs code
+intellj
+winscp
+tomcat
+

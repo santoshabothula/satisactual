@@ -9,47 +9,53 @@ import lombok.Data;
 public class ReportRequest {
 
     @JsonProperty("pin_id_campaign")
-    int campaignId;
+    private int campaignId;
 
     @JsonProperty ("pin_id_wave")
-    int waveId;
+    private int waveId;
 
     @JsonProperty ("pin_dat_start")
-    String datStart;
+    private String datStart;
 
     @JsonProperty ("pin_dat_end")
-    String datEnd;
+    private String datEnd;
 
     @JsonProperty  ("pflg_include_cover")
-    String includeCover;
+    private String includeCover;
 
     @JsonProperty ("pflg_response_summ")
-    String responseSum;
+    private String responseSum;
 
     @JsonProperty ("pflg_not_qualified_summ")
-    String notQualifiedSum;
+    private String notQualifiedSum;
 
     @JsonProperty ("pflg_outcome_summ")
-    String outcomeSum;
+    private String outcomeSum;
 
     @JsonProperty ("pflg_include_not_selected")
-    String includeNotSelected;
+    private String includeNotSelected;
 
     @JsonProperty ("pflg_include_rating_detail")
-    String includeRatingDetail;
+    private String includeRatingDetail;
 
     @JsonProperty ("pflg_include_sample_survey")
-    String includeSampleSurvey;
+    private String includeSampleSurvey;
 
     @JsonProperty ("pflg_show_rating_groups")
-    String showRatingGroups;
+    private String showRatingGroups;
 
     @JsonProperty ("pnum_low_rating_below")
-    int lowRatingBelow;
+    private int lowRatingBelow;
 
     @JsonProperty ("pnum_high_rating_above")
-    int highRatingAbove;
+    private int highRatingAbove;
 
     @JsonProperty ("pin_txt_curr_user")
-    String txtCurrUser;
+    private String txtCurrUser;
+
+    @JsonProperty("pin_enu_page_orientation")
+    private String pinEnuPageOrientation;
+
+    @JsonProperty("pin_cod_report_template")
+    private String pinCodReportTemplate;
 }

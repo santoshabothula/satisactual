@@ -44,6 +44,8 @@ public class ReportService {
                         request.getShowRatingGroups() + "','" +
                         request.getLowRatingBelow() + "','" +
                         request.getHighRatingAbove() + "','" +
+                        request.getPinEnuPageOrientation() + "','" +
+                        request.getPinCodReportTemplate() + "','" +
                         request.getTxtCurrUser()    + "'" +
                 ");"
         );
@@ -73,11 +75,11 @@ public class ReportService {
         });
     }
 
-    public List<ReportNoteDetails> findReportNoteDetails(CommonPayload payload){
+    public List<ReportNoteDetails> findReportNoteDetails(CommonPayload payload) {
         return StoredProcedureMapper.mapReportNote(storedProcedureRepository.findReportsNotes(payload.getPinIdCampaign(), payload.getPinIdCampaignWave()));
     }
 
-    public void updateReportNotes(ReportNoteRequest request){
+    public void updateReportNotes(ReportNoteRequest request) {
         storedProcedureRepository.updateReportNotes(
                 request.getPinIdCampaign(),
                 request.getPinIdCampaignWave(),
@@ -89,6 +91,5 @@ public class ReportService {
                 request.getPinFlgIncludeInReport(),
                 request.getPinTxtResolutionNote()
         );
-
     }
 }

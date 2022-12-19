@@ -1,6 +1,7 @@
 package com.datawise.satisactual.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,4 +49,14 @@ public class JwtTokenDetails {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private LinkedHashMap<Integer, String> userMessages;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("UserProfile")
+    private UserProfile userProfile;
+
+    @JsonProperty("cod_login_status")
+    private Integer codLoginStatus;
+
+    @JsonProperty("txt_login_status")
+    private String txtLoginStatus;
 }

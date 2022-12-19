@@ -7,10 +7,12 @@ public interface Const {
     String NULL = null;
     String AND = "&";
     String COLON = ":";
+    String DOT = ".";
 
     String LANG_ENG_CODE = "ENG";
 
     Integer INDICATOR_0 = 0;
+    Integer INDICATOR_1 = 1;
     String INDICATOR_MINUS_1 = "-1";
     String INDICATOR_A = "A";
     String INDICATOR_N = "N";

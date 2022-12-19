@@ -3,6 +3,7 @@ package com.datawise.satisactual.controller;
 import com.datawise.satisactual.custom.models.*;
 import com.datawise.satisactual.entities.BlockedIp;
 import com.datawise.satisactual.model.JwtTokenDetails;
+import com.datawise.satisactual.model.UserProfile;
 import com.datawise.satisactual.repository.BlockedIpRepository;
 import com.datawise.satisactual.repository.LoginVerificationRepository;
 import com.datawise.satisactual.utils.CryptoUtil;
@@ -71,6 +72,8 @@ public class LoginVerificationController {
         password = CryptoUtil.getEncryptedPassword(password);
         UserLoginDetails userLoginDetails = loginVerificationRepository.findByCodRecStatusAndTxtLoginIdAndTxtUserSignature(3, userId, password);
         if (Objects.isNull(userLoginDetails)) throw new RuntimeException("User not found");
+
+        UserProfile userProfile = populateUserDetails(userLoginDetails);
         lcod_home_module = userLoginDetails.getCodHomeModule();
         cod_language = userLoginDetails.getCodLanguage();
         login_attempt = userLoginDetails.getNumFailedPwd() + 1;
@@ -103,6 +106,11 @@ public class LoginVerificationController {
 
         tokenDetails.setStatusCode(logintype);
         tokenDetails.setStatusMessage(loginVerificationUtil.loginStatusDesc(allow));
+        userProfile.setCodLoginStatus(allow);
+        userProfile.setTxtLoginStatus(tokenDetails.getStatusMessage());
+        tokenDetails.setUserProfile(userProfile);
+        tokenDetails.setCodLoginStatus(allow);
+        tokenDetails.setTxtLoginStatus(tokenDetails.getStatusMessage());
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         if (logintype.equalsIgnoreCase("success")) {
             creator.generateToken(request, tokenDetails);
@@ -208,5 +216,46 @@ public class LoginVerificationController {
                 status = LoginVerificationUtil.STATUS_BLOCKED_IP;
             }
         }
+    }
+
+    private UserProfile populateUserDetails(UserLoginDetails details) {
+        return UserProfile.builder()
+                .txtLoginId(details.getTxtLoginId())
+                .txtUserSignature(details.getTxtUserSignature())
+                .flgFunctionalId(details.getFlgFunctionalId())
+                .flgForcePasswdChg(details.getFlgForcePasswdChg())
+                .datLastPasswdChg(details.getDatLastPasswdChg())
+                .txtUserFName(details.getTxtUserFname())
+                .txtUserMName(details.getTxtUserMname())
+                .txtUserLName(details.getTxtUserLname())
+                .enuUserGender(details.getEnuUserGender())
+                .datUserBirth(details.getDatUserBirth())
+                .idParentCompany3rdParty(details.getIdParentCompany3rdparty())
+                .txtParentCompanyName(details.getTxtParentCompanyName())
+                .flgParentCompanyVerified(details.getFlgParentCompanyVerified())
+                .datTimeParentCompanyVerified(details.getDatTimeParentCompanyVerified())
+                .codLanguage(details.getCodLanguage())
+                .txtUserEmailId(details.getTxtUserEmailId())
+                .txtUserMobilePhone(details.getTxtUserMobilePhone())
+                .txtDeviceAssigned(details.getTxtDeviceAssigned())
+                .codHomeModule(details.getCodHomeModule())
+                .codHomeMenu(details.getCodHomeMenu())
+                .codDepartment(details.getCodDepartment())
+                .codUserDesignation(details.getCodUserDesignation())
+                .txtManagerLoginId(details.getTxtManagerLoginId())
+                .txtDefaultReviewerId(details.getTxtDefaultReviewerId())
+                .txtCreditApproveId(details.getTxtCreditApproverId())
+                .codHomeBranch(details.getCodHomeBranch())
+                .flgDisabled(details.getFlgDisabled())
+                .datLastLogin(details.getDatLast_login())
+                .numFailedPwd(details.getNumFailedPwd())
+                .datProfileExpiry(details.getDatProfileExpiry())
+                .numTimeStartWkDay(details.getNumTimeStartWkday())
+                .numTimeEndWkDay(details.getNumTimeEndWkday())
+                .numTimeStartWkEnd(details.getNumTimeStartWkend())
+                .numTimeEndWkEnd(details.getNumTimeEndWkend())
+                .numTimeStartHoliday(details.getNumTimeStartHoliday())
+                .numTimeEndHoliday(details.getNumTimeEndHoliday()).build();
+
     }
 }

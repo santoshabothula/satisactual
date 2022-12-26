@@ -16,6 +16,7 @@ public interface Const {
     String INDICATOR_MINUS_1 = "-1";
     String INDICATOR_A = "A";
     String INDICATOR_N = "N";
+    String INDICATOR_Y = "Y";
     String BACKWARD_SLASH = "/";
 
     Integer MESSAGE_NUM_1142 = 1142;

@@ -5,7 +5,6 @@ import com.datawise.satisactual.model.CommonPayload;
 import com.datawise.satisactual.service.CampaignService;
 import com.datawise.satisactual.service.StoredProcedureService;
 import io.swagger.annotations.ApiImplicitParam;
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,7 +28,8 @@ public class CampaignController {
         return ResponseEntity.status(HttpStatus.OK).body(service.findCampaign(payload.getPinTxtLoginId()));
     }
 
-    @GetMapping("/dat-tab/campaigns")
+    @GetMapping(value = "/dat-tab/campaigns", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiImplicitParam(name = "Authorization", value = "Access Token", required = true, paramType = "header", dataTypeClass = String.class, example = "access_token")
     public ResponseEntity<String> getCampaigns(@RequestParam("u") String username) {
         return ResponseEntity.status(HttpStatus.OK).body(campaignService.getCampaigns(username).toString());
     }

@@ -3,29 +3,37 @@ package com.datawise.satisactual.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
 public class FieldSurveyRequest {
 
+    @NotBlank
     @JsonProperty("id_campaign")
     private String idCampaign;
 
+    @NotBlank
     @JsonProperty("id_campaign_wave")
     private String idCampaignWave;
 
+    @NotBlank
     @JsonProperty("id_response")
     private String idResponse;
 
+    @NotBlank(message = "Contact sequence should not be empty")
     @JsonProperty("num_contact_sequence")
     private String numContactSequence;
 
     @JsonProperty("cod_language")
     private String codLanguage;
 
+    @NotBlank
     @JsonProperty("id_contact_list")
     private String idContactList;
 
+    @NotBlank
     @JsonProperty("num_list_item")
     private String numListItem;
 
@@ -38,6 +46,7 @@ public class FieldSurveyRequest {
     @JsonProperty("txt_responder_name")
     private String txtResponderName;
 
+    @NotBlank(message = "Responder Age should not be empty")
     @JsonProperty("num_responder_age")
     private String numResponderAge;
 
@@ -50,21 +59,27 @@ public class FieldSurveyRequest {
     @JsonProperty("flg_allow_clarif_contact")
     private String flgAllowCLARIfContact;
 
+    @NotBlank(message = "Latitude Start should not be empty")
     @JsonProperty("num_latitude_start")
     private String numLatitudeStart;
 
+    @NotBlank(message = "Latitude End should not be empty")
     @JsonProperty("num_latitude_end")
     private String numLatitudeEnd;
 
+    @NotBlank(message = "Longitude End should not be empty")
     @JsonProperty("num_longitude_start")
     private String numLongitudeStart;
 
+    @NotBlank(message = "Longitude End should not be empty")
     @JsonProperty("num_longitude_end")
     private String numLongitudeEnd;
 
+    @NotBlank(message = "dat_time_survey_start should not be empty")
     @JsonProperty("dat_time_survey_start")
     private String datTimeSurveyStart;
 
+    @NotBlank
     @JsonProperty("dat_time_survey_end")
     private String datTimeSurveyEnd;
 

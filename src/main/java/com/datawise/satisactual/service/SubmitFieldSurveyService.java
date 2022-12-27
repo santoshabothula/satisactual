@@ -13,6 +13,7 @@ import javax.persistence.Tuple;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiFunction;
 
 @Service
@@ -31,10 +32,10 @@ public class SubmitFieldSurveyService {
         AtomicInteger count = new AtomicInteger(0);
         request.getFieldSurveyResponseDetails().forEach(surveyResponse -> {
             if (count.get() == 0) {
-                storedProcedureRepository.submitFiledSurveyList(
+                Tuple tuple = storedProcedureRepository.submitFiledSurveyList(
                         returnPlaceholderIfNull.apply(request.getIdCampaign(), ""),
                         returnPlaceholderIfNull.apply(request.getIdCampaignWave(), ""),
-                        returnPlaceholderIfNull.apply(request.getIdResponse(), ""),
+                        returnPlaceholderIfNull.apply(request.getIdResponse(), null),
                         returnPlaceholderIfNull.apply(request.getNumContactSequence(), ""),
                         returnPlaceholderIfNull.apply(surveyResponse.getIdQuestion(), "0"),
                         returnPlaceholderIfNull.apply(surveyResponse.getCodOptionSelected(), ""),
@@ -46,17 +47,19 @@ public class SubmitFieldSurveyService {
                         returnPlaceholderIfNull.apply(request.getDatTimeSurveyEnd(), ""),
                         returnPlaceholderIfNull.apply(request.getNumLatitudeEnd(), ""),
                         returnPlaceholderIfNull.apply(request.getNumLongitudeEnd(), ""),
-                        returnPlaceholderIfNull.apply(request.getIdContactList(), ""),
-                        returnPlaceholderIfNull.apply(request.getNumListItem(), ""),
+                        returnPlaceholderIfNull.apply(request.getIdContactList(), null),
+                        returnPlaceholderIfNull.apply(request.getNumListItem(), null),
                         returnPlaceholderIfNull.apply(request.getTxtSurveyConductedBy(), ""),
                         returnPlaceholderIfNull.apply(request.getTxtDeviceId(), ""),
                         returnPlaceholderIfNull.apply(request.getTxtResponderName(), ""),
-                        returnPlaceholderIfNull.apply(request.getNumResponderAge(), ""),
+                        returnPlaceholderIfNull.apply(request.getNumResponderAge(), "0"),
                         returnPlaceholderIfNull.apply(request.getEnuResponderGender(), ""),
                         returnPlaceholderIfNull.apply(request.getFlgAnonymousResponse(), ""),
                         returnPlaceholderIfNull.apply(request.getFlgAllowCLARIfContact(), ""),
                         returnPlaceholderIfNull.apply(surveyResponse.getBinRecordingPath(), "")
                 );
+                count.set(count.get() + 1);
+                if (Objects.nonNull(tuple) && Objects.nonNull(tuple.get("id_response"))) request.setIdResponse(tuple.get("id_response").toString());
             } else {
                 storedProcedureRepository.submitResponseDetails(
                         Integer.parseInt(request.getIdCampaign()),
@@ -65,7 +68,7 @@ public class SubmitFieldSurveyService {
                         Long.parseLong(surveyResponse.getIdQuestion()),
                         surveyResponse.getCodOptionSelected(),
                         surveyResponse.getTxtQuestionResponse(),
-                        Integer.parseInt(surveyResponse.getNumRank()),
+                        Objects.nonNull(surveyResponse.getNumRank()) ? Integer.parseInt(surveyResponse.getNumRank()) : null,
                         surveyResponse.getBinRecordingPath()
                 );
             }

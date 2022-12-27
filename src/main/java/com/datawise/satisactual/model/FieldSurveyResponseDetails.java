@@ -3,12 +3,16 @@ package com.datawise.satisactual.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class FieldSurveyResponseDetails {
 
+    @NotBlank
     @JsonProperty("id_question")
     private String idQuestion;
 
+    @NotBlank
     @JsonProperty("cod_option_selected")
     private String codOptionSelected;
 

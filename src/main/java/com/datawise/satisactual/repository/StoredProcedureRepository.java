@@ -74,7 +74,7 @@ public interface StoredProcedureRepository extends JpaRepository<UserMaster, Str
             ":pin_flg_anonymous_response, " +
             ":pin_flg_allow_clarif_contact, " +
             ":pin_bin_recording_path)", nativeQuery = true)
-    BigInteger submitFiledSurveyList(
+    Tuple submitFiledSurveyList(
             @Param("pin_id_campaign") String pinIdCampaign,
             @Param("pin_id_campaign_wave") String pinIdCampaignWave,
             @Param("pin_id_response") String pinIdResponse,

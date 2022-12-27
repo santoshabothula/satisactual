@@ -18,7 +18,6 @@ public class FieldSurveyRequest {
     @JsonProperty("id_campaign_wave")
     private String idCampaignWave;
 
-    @NotBlank
     @JsonProperty("id_response")
     private String idResponse;
 
@@ -29,11 +28,9 @@ public class FieldSurveyRequest {
     @JsonProperty("cod_language")
     private String codLanguage;
 
-    @NotBlank
     @JsonProperty("id_contact_list")
     private String idContactList;
 
-    @NotBlank
     @JsonProperty("num_list_item")
     private String numListItem;
 
@@ -46,7 +43,6 @@ public class FieldSurveyRequest {
     @JsonProperty("txt_responder_name")
     private String txtResponderName;
 
-    @NotBlank(message = "Responder Age should not be empty")
     @JsonProperty("num_responder_age")
     private String numResponderAge;
 

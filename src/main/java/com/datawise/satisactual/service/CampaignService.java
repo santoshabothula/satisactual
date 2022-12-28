@@ -70,13 +70,15 @@ public class CampaignService {
         wave.put("id_contact_list", campaign.get("id_contact_list"));
         wave.put("id_questionnaire", campaign.get("id_questionnaire"));
         wave.put("num_wave_response_reqd", campaign.get("num_wave_response_reqd"));
-        wave.put("num_completed", campaign.get("num_completed"));
-        wave.put("num_proofing", campaign.get("num_proofing"));
-        wave.put("num_rejected", campaign.get("num_rejected"));
-        wave.put("num_assigned", campaign.get("num_assigned"));
-        wave.put("num_attempted", campaign.get("num_attempted"));
-        wave.put("num_uniq_attempted", campaign.get("num_uniq_attempted"));
-        wave.put("num_contacted", campaign.get("num_contacted"));
+
+        // wave.put("num_completed", campaign.get("num_completed"));
+        // wave.put("num_proofing", campaign.get("num_proofing"));
+        // wave.put("num_rejected", campaign.get("num_rejected"));
+        // wave.put("num_assigned", campaign.get("num_assigned"));
+        // wave.put("num_attempted", campaign.get("num_attempted"));
+        // wave.put("num_uniq_attempted", campaign.get("num_uniq_attempted"));
+        // wave.put("num_contacted", campaign.get("num_contacted"));
+
         wave.put("dat_wave_start", campaign.get("dat_wave_start"));
         wave.put("dat_wave_end", campaign.get("dat_wave_end"));
         wave.put("flg_test_wave", campaign.get("flg_test_wave"));

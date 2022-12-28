@@ -98,7 +98,7 @@ public class UploadFileRequest {
         this.codImgType = cod_img_type;
     }
 
-    public void setFiles(MultipartFile file) {
+    public void setFile(MultipartFile file) {
         this.file = file;
     }
 }

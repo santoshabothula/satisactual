@@ -1,4 +1,4 @@
-package com.datawise.satisactual.dto;
+package com.datawise.satisactual.model.master.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

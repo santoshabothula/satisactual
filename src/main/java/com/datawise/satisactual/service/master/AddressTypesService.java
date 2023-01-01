@@ -1,11 +1,12 @@
-package com.datawise.satisactual.service;
+package com.datawise.satisactual.service.master;
 
-import com.datawise.satisactual.dto.AddressTypesMasterDTO;
-import com.datawise.satisactual.dto.MakerCheckerDTO;
+import com.datawise.satisactual.model.master.dto.AddressTypesMasterDTO;
+import com.datawise.satisactual.model.master.dto.MakerCheckerDTO;
 import com.datawise.satisactual.entities.AddressTypesEmbeddedKey;
 import com.datawise.satisactual.entities.AddressTypesMaster;
 import com.datawise.satisactual.entities.MakerChecker;
-import com.datawise.satisactual.repository.AddressTypesRepository;
+import com.datawise.satisactual.repository.master.AddressTypesRepository;
+import com.datawise.satisactual.service.CommonMasterService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;

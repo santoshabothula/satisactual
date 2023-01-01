@@ -1,8 +1,8 @@
-package com.datawise.satisactual.controller;
+package com.datawise.satisactual.controller.master;
 
-import com.datawise.satisactual.dto.AddressTypesMasterDTO;
-import com.datawise.satisactual.dto.CustomResponse;
-import com.datawise.satisactual.service.AddressTypesService;
+import com.datawise.satisactual.model.master.dto.AddressTypesMasterDTO;
+import com.datawise.satisactual.model.master.dto.CustomResponse;
+import com.datawise.satisactual.service.master.AddressTypesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

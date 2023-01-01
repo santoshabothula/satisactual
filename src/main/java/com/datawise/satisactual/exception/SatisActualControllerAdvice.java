@@ -1,6 +1,6 @@
 package com.datawise.satisactual.exception;
 
-import com.datawise.satisactual.dto.CustomResponse;
+import com.datawise.satisactual.model.master.dto.CustomResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

@@ -1,4 +1,4 @@
-package com.datawise.satisactual.repository;
+package com.datawise.satisactual.repository.master;
 
 import com.datawise.satisactual.entities.Currency;
 import com.datawise.satisactual.entities.CurrencyEmbeddedKey;

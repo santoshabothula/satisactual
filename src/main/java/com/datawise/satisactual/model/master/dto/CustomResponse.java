@@ -10,4 +10,5 @@ import lombok.Setter;
 public class CustomResponse {
     private String message;
     private Integer status;
+    private Object data;
 }

@@ -1,4 +1,4 @@
-package com.datawise.satisactual.entities;
+package com.datawise.satisactual.entities.master;
 
 import lombok.*;
 
@@ -12,13 +12,16 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssignmentTypeEmbeddedKey implements Serializable {
+public class MasterTableColumnEmbeddedKey implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "cod_assignment_typ")
-    private String codAssignmentType;
+    @Column(name = "txt_table_name")
+    private String tableName;
+
+    @Column(name = "txt_column_name")
+    private String columnName;
 
     @Column(name = "cod_rec_status")
-    private String codRecordStatus;
+    private String codRecStatus;
 }

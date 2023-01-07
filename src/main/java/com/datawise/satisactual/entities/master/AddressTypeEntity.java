@@ -1,4 +1,4 @@
-package com.datawise.satisactual.entities;
+package com.datawise.satisactual.entities.master;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressTypesMaster extends MakerChecker {
+public class AddressTypeEntity extends MakerCheckerEntity {
 
     @EmbeddedId
     private AddressTypesEmbeddedKey id;

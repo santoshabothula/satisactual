@@ -39,6 +39,11 @@ public interface Const {
     String LABEL_DAT_SYSTEM_AS_OF_CAMEL_CASE = "DatSystemAsof";
     String LABEL_USER_EMAIL_ID = "user_email_id";
 
+    String OPERATION_SAVE = "Created New Record";
+    String OPERATION_UPDATE = "Modified record";
+    String OPERATION_AUTHORIZE = "Authorized Record";
+    String OPERATION_REOPEN = "Reopen Record";
+
     String MAIL_TEMPLATE_PARAM_MESSAGE = "message";
 
     String MAIL_TEMPLATE_WELCOME_SIGNUP = "welcome-generated-password.ftl";

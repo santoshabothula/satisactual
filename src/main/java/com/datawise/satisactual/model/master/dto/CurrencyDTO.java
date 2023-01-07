@@ -1,14 +1,15 @@
 package com.datawise.satisactual.model.master.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CurrencyDTO extends MakerCheckerDTO {
 
     @NotBlank

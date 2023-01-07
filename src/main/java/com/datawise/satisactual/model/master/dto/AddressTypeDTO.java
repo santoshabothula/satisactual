@@ -1,15 +1,15 @@
 package com.datawise.satisactual.model.master.dto;
 
+import com.datawise.satisactual.enums.FlagYesNo;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Getter
-@Setter
-public class AddressTypesMasterDTO extends MakerCheckerDTO {
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class AddressTypeDTO extends BaseDTO {
 
     @NotBlank
     @Size(min = 1, max = 4)
@@ -17,29 +17,19 @@ public class AddressTypesMasterDTO extends MakerCheckerDTO {
     private String codAddressType;
 
     @NotBlank
-    @Size(min = 1, max = 1)
-    @JsonProperty("cod_rec_status")
-    private String codRecordStatus;
-
-    @NotBlank
     @Size(min = 1, max = 24)
     @JsonProperty("txt_addr_type_desc")
     private String addressTypeDesc;
 
-    @NotBlank
-    @Size(min = 1, max = 1)
     @JsonProperty("flg_default_value")
-    private String defaultValue;
+    private FlagYesNo defaultValue;
 
-    @Size(min = 1, max = 1)
     @JsonProperty("flg_accept_as_primary")
-    private String acceptAsPrimary;
+    private FlagYesNo acceptAsPrimary;
 
-    @Size(min = 1, max = 1)
     @JsonProperty("flg_accept_for_individual")
-    private String acceptForIndividual;
+    private FlagYesNo acceptForIndividual;
 
-    @Size(min = 1, max = 1)
     @JsonProperty("flg_accept_for_organization")
-    private String acceptForOrganization;
+    private FlagYesNo acceptForOrganization;
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class SatisActualControllerAdvice {
@@ -27,9 +28,30 @@ public class SatisActualControllerAdvice {
         );
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    @ExceptionHandler(value = SatisActualSaveOperationException.class)
+    public CustomResponse exception(SatisActualSaveOperationException exception) {
+        return CustomResponse.builder().
+                status(HttpStatus.BAD_REQUEST.value()).
+                message(exception.getMessage()).
+                data(exception.getExistingRecords()).
+                build();
+    }
+
     @ExceptionHandler(value = BadCredentialsException.class)
     public ResponseEntity<Object> exception(BadCredentialsException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    @ExceptionHandler(value = NoSuchElementException.class)
+    public CustomResponse exception(NoSuchElementException exception) {
+        return CustomResponse.builder().
+                status(HttpStatus.NOT_FOUND.value()).
+                message(exception.getMessage()).
+                build();
     }
 
     @ExceptionHandler(value = RuntimeException.class)

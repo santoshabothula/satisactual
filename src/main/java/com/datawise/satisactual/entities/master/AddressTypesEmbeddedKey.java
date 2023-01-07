@@ -1,4 +1,4 @@
-package com.datawise.satisactual.entities;
+package com.datawise.satisactual.entities.master;
 
 import lombok.*;
 
@@ -12,12 +12,12 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CurrencyEmbeddedKey implements Serializable {
+public class AddressTypesEmbeddedKey implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "cod_currency")
-    private String codCurrency;
+    @Column(name = "cod_addr_type")
+    private String codAddressType;
 
     @Column(name = "cod_rec_status")
     private String codRecordStatus;

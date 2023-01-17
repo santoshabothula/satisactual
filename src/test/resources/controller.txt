@@ -1,0 +1,143 @@
+package com.datawise.satisactual.controller.master;
+
+import com.datawise.satisactual.service.master.CommonMasterService;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.PostConstruct;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.BiFunction;
+
+@Validated
+@RestController
+@RequestMapping("/mst/<request-mapping>")
+public class <controller-name>Controller {
+
+    @Autowired
+    private CommonMasterService<<entity-name>Entity, <entity-name>EmbeddedKey, <entity-name>DTO> service;
+    @Autowired
+    private <entity-name>Repository repository;
+
+    private final ModelMapper mapper = new ModelMapper();
+
+    @GetMapping
+    public ResponseEntity<List<<entity-name>DTO>> getActiveAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, <entity-name>DTO.class));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<<entity-name>DTO> get(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id.apply(id, CodRecordStatus.A), mapper, <entity-name>DTO.class));
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<CustomResponse> save(@Valid @RequestBody <entity-name>DTO dto) {
+        service.save(
+                repository,
+                dto,
+                <entity-name>Entity.class,
+                getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodAddressType()),
+                dto.getCodAddressType(),
+                mapper,
+                this.id.apply(dto.getCodAddressType(), CodRecordStatus.N),
+                this.id.apply(dto.getCodAddressType(), CodRecordStatus.A)
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Save operation completed successfully").build());
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<CustomResponse> update(@Valid @RequestBody <entity-name>DTO dto) {
+        service.update(
+                repository,
+                dto,
+                <entity-name>Entity.class,
+                getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodAddressType()),
+                dto.getCodAddressType(),
+                mapper,
+                this.id.apply(dto.getCodAddressType(), CodRecordStatus.M),
+                this.id.apply(dto.getCodAddressType(), CodRecordStatus.A)
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Update operation completed successfully").build());
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<CustomResponse> delete(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+        service.delete(
+                repository,
+                <entity-name>DTO.class,
+                <entity-name>Entity.class,
+                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                id,
+                mapper,
+                this.id.apply(id, CodRecordStatus.X),
+                this.id.apply(id, CodRecordStatus.C),
+                this.id.apply(id, CodRecordStatus.A)
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Delete operation completed successfully").build());
+    }
+
+    @PostMapping("/reopen/{id}")
+    public ResponseEntity<CustomResponse> reopen(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+        service.reopen(
+                repository,
+                <entity-name>DTO.class,
+                <entity-name>DTOEntity.class,
+                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                id,
+                mapper,
+                this.id.apply(id, CodRecordStatus.R),
+                this.id.apply(id, CodRecordStatus.A),
+                this.id.apply(id, CodRecordStatus.C)
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Reopen operation completed successfully").build());
+    }
+
+    @PostMapping("/authorize/{id}")
+    public ResponseEntity<CustomResponse> authorize(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+        service.authorize(
+                repository,
+                <entity-name>DTO.class,
+                <entity-name>DTOEntity.class,
+                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                id,
+                mapper,
+                this.id.apply(id, CodRecordStatus.A),
+                this.id.apply(id, CodRecordStatus.C)
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Authorize request completed successfully").build());
+    }
+
+    @PostConstruct
+    private void postConstruct() {
+        TypeMap<<entity-name>Entity, <entity-name>DTO> dtoMap = mapper.createTypeMap(<entity-name>Entity.class, <entity-name>DTO.class);
+        dtoMap.addMapping(c -> c.getId().get<primary-key-dto>(), <entity-name>DTO::set<entity-name>DTO);
+        dtoMap.addMapping(c -> c.getId().getCodRecordStatus(), <entity-name>DTO::setCodRecordStatus);
+        dtoMap.addMapping(MakerCheckerEntity::getLastMakerId, <entity-name>DTO::setLastMakerId);
+        dtoMap.addMapping(MakerCheckerEntity::getLastMakerDateTime, <entity-name>DTO::setLastMakerDateTime);
+        dtoMap.addMapping(MakerCheckerEntity::getLastCheckerId, <entity-name>DTO::setLastCheckerId);
+        dtoMap.addMapping(MakerCheckerEntity::getLastCheckerDateTime, <entity-name>DTO::setLastCheckerDateTime);
+
+        TypeMap<<entity-name>DTO, <entity-name>Entity> entityMap = mapper.createTypeMap(<entity-name>DTO.class, <entity-name>Entity.class);
+        entityMap.addMapping(MakerCheckerDTO::getLastMakerId, <entity-name>Entity::setLastMakerId);
+        entityMap.addMapping(MakerCheckerDTO::getLastMakerDateTime, <entity-name>Entity::setLastMakerDateTime);
+        entityMap.addMapping(MakerCheckerDTO::getLastCheckerId, <entity-name>Entity::setLastCheckerId);
+        entityMap.addMapping(MakerCheckerDTO::getLastCheckerDateTime, <entity-name>Entity::setLastCheckerDateTime);
+    }
+
+    private final BiFunction<String, CodRecordStatus, <entity-name>EmbeddedKey> id = (code, status) -> <entity-name>EmbeddedKey.builder().<primary-key-dto>(code).codRecordStatus(status.name()).build();
+
+    private Specification<<entity-name>Entity> getSpec(List<CodRecordStatus> statuses, String id) {
+        return repository.findRecordWithStatusIn(statuses)
+                .and(repository.findRecordWithCode(id, "<primary-key>"));
+    }
+}

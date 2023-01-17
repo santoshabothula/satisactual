@@ -11,6 +11,13 @@ Connect to Linux:
 ssh root@192.168.1.192
 vijay.kumar@123
 
+IP: 192.168.1.195
+ssh root@192.168.1.195
+sshuser: root
+sshpassword: $Welcome2020
+
+dbuser: infinity
+dbpassword: r6J5SPAmut0*tom0!t@P
 
 
 Database

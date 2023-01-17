@@ -1,0 +1,8 @@
+
+import com.datawise.satisactual.entities.master.<entity-name>EmbeddedKey;
+import com.datawise.satisactual.entities.master.<entity-name>Entity;
+import com.datawise.satisactual.repository.IBaseRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface <entity-name>Repository extends IBaseRepository<<entity-name>Entity, <entity-name>EmbeddedKey> {}

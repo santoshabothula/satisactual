@@ -17,7 +17,7 @@ public interface IBaseRepository<ENTITY, ID> extends JpaRepository<ENTITY, ID>, 
         return (e, cq, cb) -> (e.get("id").get("codRecordStatus").in(statuses.stream().map(CodRecordStatus::name).collect(Collectors.toList())));
     }
 
-    default Specification<ENTITY> findRecordWithCode(String code, String key) {
+    default Specification<ENTITY> findRecordWithCode(Object code, String key) {
         return (e, cq, cb) -> cb.equal(e.get("id").get(key), code);
     }
 }

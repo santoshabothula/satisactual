@@ -12,11 +12,14 @@ import javax.persistence.Table;
 @Table(name = "sys_master_tables")
 @Getter
 @Setter
-public class MasterTableEntity extends BaseEntity {
+public class MasterTableEntity {
 
     @Id
     @Column(name = "txt_table_name")
     private String tableName;
+
+    @Column(name = "cod_rec_status")
+    private String codRecordStatus;
 
     @Column(name = "txt_table_desc")
     private String tableDesc;

@@ -1,49 +1,61 @@
 package com.datawise.satisactual.model.master.dto;
 
+import com.datawise.satisactual.enums.FlagYesNo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BankBranchesDTO extends MakerCheckerDTO {
+public class BankBranchDTO extends BaseDTO {
 
+    @NotBlank
+    @Size(min = 1, max = 24)
     @JsonProperty("cod_ifsc_bank_branch")
     private String codIfscBankBranch;
 
-    @JsonProperty("cod_rec_status")
-    private String codRecordStatus;
-
+    @Size(min = 1, max = 24)
     @JsonProperty("txt_bank_branch_name")
     private String bankBranchName;
 
+    @Size(min = 1, max = 24)
     @JsonProperty("cod_bank")
     private String bank;
 
+    @Size(min = 1, max = 24)
     @JsonProperty("txt_micr_code")
     private String micrCode;
 
+    @Size(min = 1, max = 24)
     @JsonProperty("txt_branch_address")
     private String branchAddress;
 
+    @Size(min = 1, max = 24)
     @JsonProperty("txt_branch_contact")
     private String branchContact;
 
+    @Size(min = 1, max = 24)
     @JsonProperty("txt_branch_city")
     private String branchCity;
 
+    @Size(min = 1, max = 12)
     @JsonProperty("cod_branch_district")
     private String branchDistrict;
 
+    @Size(min = 1, max = 12)
     @JsonProperty("cod_branch_state")
     private String branchState;
 
+    @Size(min = 1, max = 8)
     @JsonProperty("cod_pin_code")
     private String pinCode;
 
+    @Size(min = 1, max = 24)
     @JsonProperty("txt_post_office_name")
     private String postOfficeName;
 
@@ -53,6 +65,7 @@ public class BankBranchesDTO extends MakerCheckerDTO {
     @JsonProperty("num_latitude")
     private Double latitude;
 
+    @Size(min = 1, max = 1)
     @JsonProperty("enu_office_type")
     private String officeType;
 
@@ -62,6 +75,7 @@ public class BankBranchesDTO extends MakerCheckerDTO {
     @JsonProperty("dat_office_closed")
     private LocalDateTime officeClosed;
 
+    @Size(min = 1, max = 24)
     @JsonProperty("txt_license_number")
     private String licenseNumber;
 
@@ -69,100 +83,100 @@ public class BankBranchesDTO extends MakerCheckerDTO {
     private LocalDateTime revalidation;
 
     @JsonProperty("flg_general_banking")
-    private String generalBanking;
+    private FlagYesNo generalBanking;
 
     @JsonProperty("flg_hsg_cons_vehicle_finance")
-    private String hsgConsVehicleFinance;
+    private FlagYesNo hsgConsVehicleFinance;
 
     @JsonProperty("flg_corporate_banking")
-    private String corporateBanking;
+    private FlagYesNo corporateBanking;
 
     @JsonProperty("flg_agri_finance")
-    private String agriFinance;
+    private FlagYesNo agriFinance;
 
     @JsonProperty("flg_specialized_msme")
-    private String specializedMsme;
+    private FlagYesNo specializedMsme;
 
     @JsonProperty("flg_forex")
-    private String forex;
+    private FlagYesNo forex;
 
     @JsonProperty("flg_cap_mkt_inv_banking")
-    private String capMktInvBanking;
+    private FlagYesNo capMktInvBanking;
 
     @JsonProperty("flg_govt_business")
-    private String govtBusiness;
+    private FlagYesNo govtBusiness;
 
     @JsonProperty("flg_taxes")
-    private String taxes;
+    private FlagYesNo taxes;
 
     @JsonProperty("flg_ppf_pension_services")
-    private String ppfPensionServices;
+    private FlagYesNo ppfPensionServices;
 
     @JsonProperty("flg_cust_self_service")
-    private String custSelfService;
+    private FlagYesNo custSelfService;
 
     @JsonProperty("flg_ultra_small")
-    private String ultraSmall;
+    private FlagYesNo ultraSmall;
 
     @JsonProperty("flg_treasury_branch")
-    private String treasuryBranch;
+    private FlagYesNo treasuryBranch;
 
     @JsonProperty("flg_forex_treasury")
-    private String forexTreasury;
+    private FlagYesNo forexTreasury;
 
     @JsonProperty("flg_currency_chest")
-    private String currencyChest;
+    private FlagYesNo currencyChest;
 
     @JsonProperty("flg_small_coin_depot")
-    private String smallCoinDepot;
+    private FlagYesNo smallCoinDepot;
 
     @JsonProperty("flg_asset_recovery_branch")
-    private String assetRecoveryBranch;
+    private FlagYesNo assetRecoveryBranch;
 
     @JsonProperty("flg_clearing_payment_svc")
-    private String clearingPaymentSvc;
+    private FlagYesNo clearingPaymentSvc;
 
     @JsonProperty("flg_deposit_processing_center")
-    private String depositProcessingCenter;
+    private FlagYesNo depositProcessingCenter;
 
     @JsonProperty("flg_loan_processing_center")
-    private String loanProcessingCenter;
+    private FlagYesNo loanProcessingCenter;
 
     @JsonProperty("flg_forex_processing_center")
-    private String forexProcessingCenter;
+    private FlagYesNo forexProcessingCenter;
 
     @JsonProperty("flg_trade_fin_processing_center")
-    private String tradeFinProcessingCenter;
+    private FlagYesNo tradeFinProcessingCenter;
 
     @JsonProperty("flg_administrative_office")
-    private String administrativeOffice;
+    private FlagYesNo administrativeOffice;
 
     @JsonProperty("flg_extension_counter")
-    private String extensionCounter;
+    private FlagYesNo extensionCounter;
 
     @JsonProperty("flg_satellite_office")
-    private String satelliteOffice;
+    private FlagYesNo satelliteOffice;
 
     @JsonProperty("flg_mobile_office")
-    private String mobileOffice;
+    private FlagYesNo mobileOffice;
 
     @JsonProperty("flg_service_branch")
-    private String serviceBranch;
+    private FlagYesNo serviceBranch;
 
     @JsonProperty("flg_mobile_atm")
-    private String mobileAtm;
+    private FlagYesNo mobileAtm;
 
     @JsonProperty("flg_onsite_atm")
-    private String onsiteAtm;
+    private FlagYesNo onsiteAtm;
 
     @JsonProperty("flg_offsite_atm")
-    private String offsiteAtm;
+    private FlagYesNo offsiteAtm;
 
     @JsonProperty("flg_rep_office")
-    private String repOffice;
+    private FlagYesNo repOffice;
 
     @JsonProperty("flg_exchg_bureau")
-    private String exchangeBureau;
+    private FlagYesNo exchangeBureau;
 
     @JsonProperty("enu_auth_forex_dealer_category")
     private String authForexDealerCategory;

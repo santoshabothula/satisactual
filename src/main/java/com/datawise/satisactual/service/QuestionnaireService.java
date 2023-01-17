@@ -52,7 +52,7 @@ public class QuestionnaireService {
         Map<String, List<Tuple>> map = result.stream().collect(groupingBy(t -> String.valueOf(t.get("id_question"))));
         JSONArray questions = new JSONArray();
         map.forEach((k,v) -> {
-            JSONObject question = questions(tuple);
+            JSONObject question = questions(v.get(0));
             JSONArray qLanguages = new JSONArray();
             JSONArray qLinks = new JSONArray();
             JSONArray qOptions = new JSONArray();

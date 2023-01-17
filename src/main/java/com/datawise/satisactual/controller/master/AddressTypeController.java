@@ -12,6 +12,7 @@ import com.datawise.satisactual.service.master.CommonMasterService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +22,7 @@ import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -35,7 +37,6 @@ public class AddressTypeController {
     private AddressTypesRepository repository;
 
     private final ModelMapper mapper = new ModelMapper();
-    private final String primaryKey = "codAddressType";
 
     @GetMapping
     public ResponseEntity<List<AddressTypeDTO>> getActiveAll() {
@@ -53,7 +54,7 @@ public class AddressTypeController {
                 repository,
                 dto,
                 AddressTypeEntity.class,
-                primaryKey,
+                getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodAddressType()),
                 dto.getCodAddressType(),
                 mapper,
                 this.id.apply(dto.getCodAddressType(), CodRecordStatus.N),
@@ -68,7 +69,7 @@ public class AddressTypeController {
                 repository,
                 dto,
                 AddressTypeEntity.class,
-                primaryKey,
+                getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodAddressType()),
                 dto.getCodAddressType(),
                 mapper,
                 this.id.apply(dto.getCodAddressType(), CodRecordStatus.M),
@@ -83,7 +84,7 @@ public class AddressTypeController {
                 repository,
                 AddressTypeDTO.class,
                 AddressTypeEntity.class,
-                primaryKey,
+                getSpec(Arrays.asList(CodRecordStatus.values()), id),
                 id,
                 mapper,
                 this.id.apply(id, CodRecordStatus.X),
@@ -99,7 +100,7 @@ public class AddressTypeController {
                 repository,
                 AddressTypeDTO.class,
                 AddressTypeEntity.class,
-                primaryKey,
+                getSpec(Arrays.asList(CodRecordStatus.values()), id),
                 id,
                 mapper,
                 this.id.apply(id, CodRecordStatus.R),
@@ -115,7 +116,7 @@ public class AddressTypeController {
                 repository,
                 AddressTypeDTO.class,
                 AddressTypeEntity.class,
-                primaryKey,
+                getSpec(Arrays.asList(CodRecordStatus.values()), id),
                 id,
                 mapper,
                 this.id.apply(id, CodRecordStatus.A),
@@ -142,4 +143,9 @@ public class AddressTypeController {
     }
 
     private final BiFunction<String, CodRecordStatus, AddressTypesEmbeddedKey> id = (code, status) -> AddressTypesEmbeddedKey.builder().codAddressType(code).codRecordStatus(status.name()).build();
+
+    private Specification<AddressTypeEntity> getSpec(List<CodRecordStatus> statuses, String id) {
+        return repository.findRecordWithStatusIn(statuses)
+                .and(repository.findRecordWithCode(id, "codAddressType"));
+    }
 }

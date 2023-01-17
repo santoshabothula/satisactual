@@ -6,10 +6,12 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 
 import javax.sql.DataSource;
 
 @Configuration
+@Profile("!local")
 @Import(ApplicationConfig.class)
 public class DataSourceConfig {
 

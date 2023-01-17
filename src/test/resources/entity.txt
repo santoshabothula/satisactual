@@ -1,0 +1,24 @@
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "<table-name>")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class <entity-name>Entity extends MakerCheckerEntity {
+
+    @EmbeddedId
+    private <entity-name>EmbeddedKey id;
+
+    <columns-list>
+}

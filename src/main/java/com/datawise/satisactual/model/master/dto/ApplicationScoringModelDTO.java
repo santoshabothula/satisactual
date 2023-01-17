@@ -2,7 +2,10 @@ package com.datawise.satisactual.model.master.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
@@ -14,17 +17,12 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApplicationScoringModelDTO extends MakerCheckerDTO {
+public class ApplicationScoringModelDTO extends BaseDTO {
 
     @NotBlank
     @Size(min = 1, max = 4)
     @JsonProperty("cod_scoring_model")
     private String codScoringModel;
-
-    @NotBlank
-    @Size(min = 1, max = 1)
-    @JsonProperty("cod_rec_status")
-    private String codRecordStatus;
 
     @NotNull
     @DateTimeFormat(pattern="yyyy-MM-dd")

@@ -1,7 +1,10 @@
 package com.datawise.satisactual.model.master.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -10,17 +13,12 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuditChecklistDTO extends MakerCheckerDTO {
+public class AuditChecklistDTO extends BaseDTO {
 
     @NotBlank
     @Size(min = 1, max = 4)
     @JsonProperty("cod_audit_item")
     private String codAuditItem;
-
-    @NotBlank
-    @Size(min = 1, max = 1)
-    @JsonProperty("cod_rec_status")
-    private String codRecordStatus;
 
     @NotBlank
     @Size(min = 1, max = 24)

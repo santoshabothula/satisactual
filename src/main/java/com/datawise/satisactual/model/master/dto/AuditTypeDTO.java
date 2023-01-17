@@ -1,23 +1,29 @@
 package com.datawise.satisactual.model.master.dto;
 
+import com.datawise.satisactual.enums.FlagYesNo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuditTypeDTO extends MakerCheckerDTO {
+public class AuditTypeDTO extends BaseDTO {
 
+    @NotBlank
+    @Size(min = 1, max = 4)
     @JsonProperty("cod_audit_type")
     private String codAuditType;
 
-    @JsonProperty("cod_rec_status")
-    private String codRecordStatus;
-
+    @NotBlank
+    @Size(min = 1, max = 48)
     @JsonProperty("txt_audit_type_desc")
     private String auditTypeDesc;
 
+    @Size(min = 1, max = 1)
     @JsonProperty("enu_audit_periodicity")
     private String auditPeriodicity;
 
@@ -34,5 +40,5 @@ public class AuditTypeDTO extends MakerCheckerDTO {
     private Integer daysAuditReview;
 
     @JsonProperty("flg_default_value")
-    private String defaultValue;
+    private FlagYesNo defaultValue;
 }

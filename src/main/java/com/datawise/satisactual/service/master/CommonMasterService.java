@@ -8,6 +8,7 @@ import com.datawise.satisactual.repository.master.CommonMasterServiceHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,8 +35,8 @@ public class CommonMasterService<ENTITY, ID, DTO> {
     }
 
     @Transactional
-    public void save(IBaseRepository<ENTITY, ID> rep, BaseDTO dto, Class<ENTITY> entityCls, String primaryKey, String primaryKeyValue, ModelMapper mapper, ID id, ID approveId) {
-        List<ENTITY> entities = rep.findAll(rep.findRecordWithStatusIn(List.of(CodRecordStatus.values())).and(rep.findRecordWithCode(primaryKeyValue, primaryKey)));
+    public void save(IBaseRepository<ENTITY, ID> rep, BaseDTO dto, Class<ENTITY> entityCls, Specification<ENTITY> spec, String primaryKeyValue, ModelMapper mapper, ID id, ID approveId) {
+        List<ENTITY> entities = rep.findAll(spec);
         helper.saveValidation(entities);
 
         helper.makerChecker(dto, true, null);
@@ -47,8 +48,8 @@ public class CommonMasterService<ENTITY, ID, DTO> {
     }
 
     @Transactional
-    public void update(IBaseRepository<ENTITY, ID> rep, BaseDTO dto, Class<ENTITY> entityCls, String primaryKey, String primaryKeyValue, ModelMapper mapper, ID id, ID approveId) {
-        List<ENTITY> entities = rep.findAll(rep.findRecordWithStatusIn(List.of(CodRecordStatus.values())).and(rep.findRecordWithCode(primaryKeyValue, primaryKey)));
+    public void update(IBaseRepository<ENTITY, ID> rep, BaseDTO dto, Class<ENTITY> entityCls, Specification<ENTITY> spec, String primaryKeyValue, ModelMapper mapper, ID id, ID approveId) {
+        List<ENTITY> entities = rep.findAll(spec);
         helper.updateValidation(entities);
 
         helper.makerChecker(dto, true, null);
@@ -60,8 +61,8 @@ public class CommonMasterService<ENTITY, ID, DTO> {
     }
 
     @Transactional
-    public void delete(IBaseRepository<ENTITY, ID> rep, Class<DTO> dtoClass, Class<ENTITY> entityCls, String primaryKey, String primaryKeyValue, ModelMapper mapper, ID id, ID approveId, ID deleteId) {
-        List<ENTITY> entities = rep.findAll(rep.findRecordWithStatusIn(List.of(CodRecordStatus.values())).and(rep.findRecordWithCode(primaryKeyValue, primaryKey)));
+    public void delete(IBaseRepository<ENTITY, ID> rep, Class<DTO> dtoClass, Class<ENTITY> entityCls, Specification<ENTITY> spec, String primaryKeyValue, ModelMapper mapper, ID id, ID approveId, ID deleteId) {
+        List<ENTITY> entities = rep.findAll(spec);
         helper.deleteValidation(entities);
 
         BaseDTO dto = (BaseDTO) mapper.map(entities.get(0), dtoClass);
@@ -76,8 +77,8 @@ public class CommonMasterService<ENTITY, ID, DTO> {
     }
 
     @Transactional
-    public void reopen(IBaseRepository<ENTITY, ID> rep, Class<DTO> dtoClass, Class<ENTITY> entityCls, String primaryKey, String primaryKeyValue, ModelMapper mapper, ID id, ID approveId, ID deleteId) {
-        List<ENTITY> entities = rep.findAll(rep.findRecordWithStatusIn(List.of(CodRecordStatus.values())).and(rep.findRecordWithCode(primaryKeyValue, primaryKey)));
+    public void reopen(IBaseRepository<ENTITY, ID> rep, Class<DTO> dtoClass, Class<ENTITY> entityCls, Specification<ENTITY> spec, String primaryKeyValue, ModelMapper mapper, ID id, ID approveId, ID deleteId) {
+        List<ENTITY> entities = rep.findAll(spec);
         helper.reopenValidation(entities);
 
         BaseDTO dto = (BaseDTO) mapper.map(entities.get(0), dtoClass);
@@ -92,8 +93,8 @@ public class CommonMasterService<ENTITY, ID, DTO> {
     }
 
     @Transactional
-    public void authorize(IBaseRepository<ENTITY, ID> rep, Class<DTO> dtoClass, Class<ENTITY> entityCls, String primaryKey, String primaryKeyValue, ModelMapper mapper, ID id, ID deletetId) {
-        List<ENTITY> entities = rep.findAll(rep.findRecordWithStatusIn(List.of(CodRecordStatus.N, CodRecordStatus.M, CodRecordStatus.X, CodRecordStatus.R)).and(rep.findRecordWithCode(primaryKeyValue, primaryKey)));
+    public void authorize(IBaseRepository<ENTITY, ID> rep, Class<DTO> dtoClass, Class<ENTITY> entityCls, Specification<ENTITY> spec, String primaryKeyValue, ModelMapper mapper, ID id, ID deletetId) {
+        List<ENTITY> entities = rep.findAll(spec);
         helper.authorizeValidation(entities);
 
         BaseDTO dto = (BaseDTO) mapper.map(entities.get(0), dtoClass);

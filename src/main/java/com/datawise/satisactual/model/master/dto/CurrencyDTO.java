@@ -1,5 +1,6 @@
 package com.datawise.satisactual.model.master.dto;
 
+import com.datawise.satisactual.enums.FlagYesNo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -10,41 +11,32 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurrencyDTO extends MakerCheckerDTO {
+public class CurrencyDTO extends BaseDTO {
 
     @NotBlank
     @Size(min = 1, max = 4)
-    @JsonProperty("cod_currency")
+	@JsonProperty("cod_currency")
     private String codCurrency;
 
-    @NotBlank
-    @Size(min = 1, max = 1)
-    @JsonProperty("cod_rec_status")
-    private String codRecordStatus;
-
-    @NotBlank
     @Size(min = 1, max = 24)
-    @JsonProperty("txt_currency_desc")
-    private String txt_currency_desc;
+	@JsonProperty("txt_currency_desc")
+    private String currencyDesc;
 
-    @NotBlank
     @Size(min = 1, max = 1)
-    @JsonProperty("txt_currency_symbol")
+	@JsonProperty("txt_currency_symbol")
     private String currencySymbol;
 
     @Size(min = 1, max = 4)
-    @JsonProperty("cod_country")
+	@JsonProperty("cod_country")
     private String country;
 
-    @JsonProperty("num_decimal_places")
+	@JsonProperty("num_decimal_places")
     private Integer decimalPlaces;
 
     @Size(min = 1, max = 48)
-    @JsonProperty("txt_minor_unit_name")
+	@JsonProperty("txt_minor_unit_name")
     private String minorUnitName;
 
-    @NotBlank
-    @Size(min = 1, max = 1)
-    @JsonProperty("flg_default_value")
-    private String idDefaultValue;
+	@JsonProperty("flg_default_value")
+    private FlagYesNo defaultValue;
 }

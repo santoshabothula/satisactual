@@ -116,7 +116,7 @@ public class AssignmentTypeController {
                 repository,
                 AssignmentTypeDTO.class,
                 AssignmentTypeEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                getSpec(Arrays.asList(CodRecordStatus.R, CodRecordStatus.X, CodRecordStatus.C, CodRecordStatus.M, CodRecordStatus.N), id),
                 id,
                 mapper,
                 this.id.apply(id, CodRecordStatus.A),

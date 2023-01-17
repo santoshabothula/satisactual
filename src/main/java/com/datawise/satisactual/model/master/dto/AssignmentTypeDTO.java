@@ -26,8 +26,6 @@ public class AssignmentTypeDTO extends BaseDTO {
     @JsonProperty("txt_assignment_type_desc")
     private String assignmentTypeDesc;
 
-    @NotBlank
-    @Size(min = 1, max = 1)
     @JsonProperty("flg_default_value")
     private FlagYesNo isDefaultValue;
 }

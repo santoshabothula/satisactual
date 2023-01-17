@@ -8,6 +8,7 @@ import com.datawise.satisactual.model.master.dto.BaseDTO;
 import com.datawise.satisactual.repository.IBaseRepository;
 import com.datawise.satisactual.repository.MasterTableRepository;
 import com.datawise.satisactual.service.master.AuditTrailService;
+import com.datawise.satisactual.utils.Const;
 import com.datawise.satisactual.utils.ReflectionUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,7 +116,8 @@ public class CommonMasterServiceHelper<ENTITY, ID, DTO> {
 
     public void authorizeValidation(List<ENTITY> list) {
         if (Objects.isNull(list) || list.isEmpty()) throw new SatisActualProcessException("Record Not Found!");
-        else if (list.size() > 1) throw new SatisActualProcessException("Invalid Record Found!");
+        List<Object> values = reflectionUtil.getEntityPropValues("codRecordStatus", list).stream().filter(o -> !o.toString().equals(Const.INDICATOR_A)).collect(Collectors.toList());
+        if (values.size() > 1) throw new SatisActualProcessException("Invalid Record Found!");
     }
 
     @Transactional

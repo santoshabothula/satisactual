@@ -115,7 +115,7 @@ public class AuditChecklistController {
                 repository,
                 AuditChecklistDTO.class,
                 AuditChecklistEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.R, CodRecordStatus.N, CodRecordStatus.C, CodRecordStatus.M, CodRecordStatus.X), id),
+                getSpec(Arrays.asList(CodRecordStatus.R, CodRecordStatus.X, CodRecordStatus.M, CodRecordStatus.N), id),
                 id,
                 mapper,
                 this.id.apply(id, CodRecordStatus.A),

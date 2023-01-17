@@ -128,7 +128,7 @@ public class AuditChecklistController {
     private void postConstruct() {
         TypeMap<AuditChecklistEntity, AuditChecklistDTO> dtoMap = mapper.createTypeMap(AuditChecklistEntity.class, AuditChecklistDTO.class);
         dtoMap.addMapping(c -> c.getId().getCodAuditItem(), AuditChecklistDTO::setCodAuditItem);
-        dtoMap.addMapping(c -> c.getId().getCodRecordStatus(), AuditChecklistDTO::setCodAuditItem);
+        dtoMap.addMapping(c -> c.getId().getCodRecordStatus(), AuditChecklistDTO::setCodRecordStatus);
         dtoMap.addMapping(MakerCheckerEntity::getLastMakerId, AuditChecklistDTO::setLastMakerId);
         dtoMap.addMapping(MakerCheckerEntity::getLastMakerDateTime, AuditChecklistDTO::setLastMakerDateTime);
         dtoMap.addMapping(MakerCheckerEntity::getLastCheckerId, AuditChecklistDTO::setLastCheckerId);

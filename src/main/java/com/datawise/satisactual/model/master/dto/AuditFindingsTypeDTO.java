@@ -26,19 +26,15 @@ public class AuditFindingsTypeDTO extends BaseDTO {
     @JsonProperty("txt_audit_finding_type_desc")
     private String auditFindingTypeDesc;
 
-    @NotBlank
     @JsonProperty("flg_corrective_action_reqd")
     private FlagYesNo correctiveActionReqd;
 
-    @NotBlank
     @JsonProperty("flg_preventive_action_reqd")
     private FlagYesNo preventiveActionReqd;
 
-    @NotBlank
     @JsonProperty("flg_adverse_observation")
     private FlagYesNo adverseObservation;
 
-    @NotBlank
     @JsonProperty("flg_default_value")
     private FlagYesNo defaultValue;
 }

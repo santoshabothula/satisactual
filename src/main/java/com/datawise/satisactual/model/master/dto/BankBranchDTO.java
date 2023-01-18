@@ -1,8 +1,12 @@
 package com.datawise.satisactual.model.master.dto;
 
 import com.datawise.satisactual.enums.FlagYesNo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -69,9 +73,11 @@ public class BankBranchDTO extends BaseDTO {
     @JsonProperty("enu_office_type")
     private String officeType;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @JsonProperty("dat_office_open")
     private LocalDateTime officeOpen;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @JsonProperty("dat_office_closed")
     private LocalDateTime officeClosed;
 
@@ -79,6 +85,7 @@ public class BankBranchDTO extends BaseDTO {
     @JsonProperty("txt_license_number")
     private String licenseNumber;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @JsonProperty("dat_revalidation")
     private LocalDateTime revalidation;
 
@@ -181,6 +188,7 @@ public class BankBranchDTO extends BaseDTO {
     @JsonProperty("enu_auth_forex_dealer_category")
     private String authForexDealerCategory;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @JsonProperty("dat_forex_authorized")
     private LocalDateTime forexAuthorized;
 }

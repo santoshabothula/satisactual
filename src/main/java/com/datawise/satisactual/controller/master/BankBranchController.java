@@ -44,7 +44,7 @@ public class BankBranchController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BankBranchDTO> get(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+    public ResponseEntity<BankBranchDTO> get(@Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("id") String id) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id.apply(id, CodRecordStatus.A), mapper, BankBranchDTO.class));
     }
 
@@ -79,7 +79,7 @@ public class BankBranchController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<CustomResponse> delete(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+    public ResponseEntity<CustomResponse> delete(@Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("id") String id) {
         service.delete(
                 repository,
                 BankBranchDTO.class,
@@ -95,7 +95,7 @@ public class BankBranchController {
     }
 
     @PostMapping("/reopen/{id}")
-    public ResponseEntity<CustomResponse> reopen(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+    public ResponseEntity<CustomResponse> reopen(@Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("id") String id) {
         service.reopen(
                 repository,
                 BankBranchDTO.class,
@@ -111,12 +111,12 @@ public class BankBranchController {
     }
 
     @PostMapping("/authorize/{id}")
-    public ResponseEntity<CustomResponse> authorize(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+    public ResponseEntity<CustomResponse> authorize(@Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("id") String id) {
         service.authorize(
                 repository,
                 BankBranchDTO.class,
                 BankBranchEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                getSpec(Arrays.asList(CodRecordStatus.R, CodRecordStatus.X, CodRecordStatus.M, CodRecordStatus.N), id),
                 id,
                 mapper,
                 this.id.apply(id, CodRecordStatus.A),

@@ -1,6 +1,7 @@
 package com.datawise.satisactual.model.master.dto;
 
 import com.datawise.satisactual.enums.FlagYesNo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,9 +43,11 @@ public class BankCodeDTO extends BaseDTO {
     @JsonProperty("cod_owner_country")
     private String ownerCountry;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     @JsonProperty("dat_opened")
     private LocalDate opened;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     @JsonProperty("dat_closed_or_merged")
     private LocalDate closedOrMerged;
 

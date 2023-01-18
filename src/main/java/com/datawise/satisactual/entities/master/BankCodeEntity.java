@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "mst_bank_branches")
+@Table(name = "mst_bank_codes")
 @Getter
 @Setter
 @AllArgsConstructor

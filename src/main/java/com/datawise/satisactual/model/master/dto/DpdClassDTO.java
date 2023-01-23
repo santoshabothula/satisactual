@@ -19,8 +19,9 @@ public class DpdClassDTO extends BaseDTO {
     private String codDpdClass;
 
     @NotBlank
+    @Size(min = 1, max = 1)
 	@JsonProperty("flg_rewrite")
-    private FlagYesNo isRewrite;
+    private String isRewrite;
 
     @Size(min = 1, max = 24)
 	@JsonProperty("txt_dpd_class_desc")

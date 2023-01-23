@@ -1,7 +1,9 @@
 package com.datawise.satisactual.model.master.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -20,6 +22,8 @@ public class IntRateDTO extends BaseDTO {
     private String codInterestRate;
 
     @NotNull
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
 	@JsonProperty("dat_effective")
     private LocalDate datEffective;
 

@@ -27,7 +27,7 @@ import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("/mst/funding_line_tranche")
+@RequestMapping("/mst/funding-line-tranche")
 public class FundingLineTrancheController {
 
     @Autowired
@@ -45,7 +45,7 @@ public class FundingLineTrancheController {
     @GetMapping("/{funding-line-tranche}/{funding-line}/{funder}")
     public ResponseEntity<FundingLineTrancheDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funding-line-tranche") String fundingLineTranche,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("fundingLine") String fundingLine,
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funding-line") String fundingLine,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funder") String funder
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id(CodRecordStatus.A, fundingLineTranche, fundingLine, funder), mapper, FundingLineTrancheDTO.class));
@@ -84,7 +84,7 @@ public class FundingLineTrancheController {
     @DeleteMapping("/delete/{funding-line-tranche}/{funding-line}/{funder}")
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funding-line-tranche") String fundingLineTranche,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("fundingLine") String fundingLine,
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funding-line") String fundingLine,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funder") String funder
     ) {
         service.delete(
@@ -104,7 +104,7 @@ public class FundingLineTrancheController {
     @PostMapping("/reopen/{funding-line-tranche}/{funding-line}/{funder}")
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funding-line-tranche") String fundingLineTranche,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("fundingLine") String fundingLine,
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funding-line") String fundingLine,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funder") String funder
     ) {
         service.reopen(
@@ -124,7 +124,7 @@ public class FundingLineTrancheController {
     @PostMapping("/authorize/{funding-line-tranche}/{funding-line}/{funder}")
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funding-line-tranche") String fundingLineTranche,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("fundingLine") String fundingLine,
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funding-line") String fundingLine,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("funder") String funder
     ) {
         service.authorize(

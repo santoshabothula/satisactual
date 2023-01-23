@@ -42,7 +42,7 @@ public class DocTypeController {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, DocTypeDTO.class));
     }
 
-    @GetMapping("/{id}/{doc-type}/{doc-purpose}")
+    @GetMapping("/{doc-type}/{doc-purpose}")
     public ResponseEntity<DocTypeDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("doc-type") String docType,
             @Valid @NotBlank @Size(min = 1, max = 1) @PathVariable("doc-purpose") String docPurpose

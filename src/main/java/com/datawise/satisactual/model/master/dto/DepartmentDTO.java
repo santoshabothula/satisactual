@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -18,6 +19,7 @@ public class DepartmentDTO extends BaseDTO {
 	@JsonProperty("cod_department")
     private String codDepartment;
 
+    @NotNull
 	@JsonProperty("id_third_party")
     private Long idThirdParty;
 

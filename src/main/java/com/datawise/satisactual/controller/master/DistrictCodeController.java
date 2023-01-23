@@ -42,7 +42,7 @@ public class DistrictCodeController {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, DistrictCodeDTO.class));
     }
 
-    @GetMapping("/{id}/{date}")
+    @GetMapping("/{district}/{state}/{country}")
     public ResponseEntity<DistrictCodeDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("district") String district,
             @Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("state") String state,
@@ -58,7 +58,7 @@ public class DistrictCodeController {
                 dto,
                 DistrictCodeEntity.class,
                 getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodDistrict(), dto.getCodState(), dto.getCodCountry()),
-                dto.getCodDistrict() + ";" + dto.getCodState(),
+                dto.getCodDistrict() + ";" + dto.getCodState() + ";" + dto.getCodCountry(),
                 mapper,
                 this.id(dto.getCodDistrict(), CodRecordStatus.N, dto.getCodState(), dto.getCodCountry()),
                 this.id(dto.getCodDistrict(), CodRecordStatus.A, dto.getCodState(), dto.getCodCountry())
@@ -73,7 +73,7 @@ public class DistrictCodeController {
                 dto,
                 DistrictCodeEntity.class,
                 getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodDistrict(), dto.getCodState(), dto.getCodCountry()),
-                dto.getCodDistrict() + ";" + dto.getCodState(),
+                dto.getCodDistrict() + ";" + dto.getCodState() + ";" + dto.getCodCountry(),
                 mapper,
                 this.id(dto.getCodDistrict(), CodRecordStatus.M, dto.getCodState(), dto.getCodCountry()),
                 this.id(dto.getCodDistrict(), CodRecordStatus.A, dto.getCodState(), dto.getCodCountry())
@@ -81,7 +81,7 @@ public class DistrictCodeController {
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Update operation completed successfully").build());
     }
 
-    @DeleteMapping("/delete/{id}/{date}")
+    @DeleteMapping("/delete/{district}/{state}/{country}")
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("district") String district,
             @Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("state") String state,
@@ -101,7 +101,7 @@ public class DistrictCodeController {
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Delete operation completed successfully").build());
     }
 
-    @PostMapping("/reopen/{id}/{date}")
+    @PostMapping("/reopen/{district}/{state}/{country}")
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("district") String district,
             @Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("state") String state,
@@ -121,7 +121,7 @@ public class DistrictCodeController {
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Reopen operation completed successfully").build());
     }
 
-    @PostMapping("/authorize/{id}/{date}")
+    @PostMapping("/authorize/{district}/{state}/{country}")
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("district") String district,
             @Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("state") String state,

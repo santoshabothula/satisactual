@@ -116,7 +116,7 @@ public class CarDealershipController {
                 repository,
                 CarDealershipDTO.class,
                 CarDealershipEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                getSpec(Arrays.asList(CodRecordStatus.R, CodRecordStatus.X, CodRecordStatus.M, CodRecordStatus.N), id),
                 String.valueOf(id),
                 mapper,
                 this.id.apply(id, CodRecordStatus.A),

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.List;
@@ -44,10 +44,10 @@ public class CustomModelAttribController {
 
     @GetMapping("/{scoring-model}/{cod-attribute}/{attrib-value-min}/{attrib-value-max}")
     public ResponseEntity<CustomModelAttribDTO> get(
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("scoring-model") String scoringModel,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("cod-attribute") String codAttribute,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("attrib-value-min") String attribValueMin,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("attrib-value-max") String attribValueMax
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("scoring-model") String scoringModel,
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("cod-attribute") String codAttribute,
+            @Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("attrib-value-min") String attribValueMin,
+            @Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("attrib-value-max") String attribValueMax
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id(CodRecordStatus.A, scoringModel, codAttribute, attribValueMin, attribValueMax), mapper, CustomModelAttribDTO.class));
     }
@@ -59,7 +59,7 @@ public class CustomModelAttribController {
                 dto,
                 CustomModelAttribEntity.class,
                 getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodScoringModel(), dto.getCodAttribute(), dto.getAttribValueMin(), dto.getAttribValueMax()),
-                dto.getCodScoringModel() + ";" + dto.getCodAttribute() + "," + dto.getAttribValueMin() + "," + dto.getAttribValueMax(),
+                dto.getCodScoringModel() + ";" + dto.getCodAttribute() + ";" + dto.getAttribValueMin() + ";" + dto.getAttribValueMax(),
                 mapper,
                 this.id(CodRecordStatus.N, dto.getCodScoringModel(), dto.getCodAttribute(), dto.getAttribValueMin(), dto.getAttribValueMax()),
                 this.id(CodRecordStatus.A, dto.getCodScoringModel(), dto.getCodAttribute(), dto.getAttribValueMin(), dto.getAttribValueMax())
@@ -84,17 +84,17 @@ public class CustomModelAttribController {
 
     @DeleteMapping("/delete/{scoring-model}/{cod-attribute}/{attrib-value-min}/{attrib-value-max}")
     public ResponseEntity<CustomResponse> delete(
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("scoring-model") String scoringModel,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("cod-attribute") String codAttribute,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("attrib-value-min") String attribValueMin,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("attrib-value-max") String attribValueMax
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("scoring-model") String scoringModel,
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("cod-attribute") String codAttribute,
+            @Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("attrib-value-min") String attribValueMin,
+            @Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("attrib-value-max") String attribValueMax
     ) {
         service.delete(
                 repository,
                 CustomModelAttribDTO.class,
                 CustomModelAttribEntity.class,
                 getSpec(Arrays.asList(CodRecordStatus.values()), scoringModel, codAttribute, attribValueMin, attribValueMax),
-                scoringModel + "," + codAttribute + "," + attribValueMin + "," + attribValueMax,
+                scoringModel + ";" + codAttribute + ";" + attribValueMin + ";" + attribValueMax,
                 mapper,
                 this.id(CodRecordStatus.X, scoringModel, codAttribute, attribValueMin, attribValueMax),
                 this.id(CodRecordStatus.C, scoringModel, codAttribute, attribValueMin, attribValueMax),
@@ -105,10 +105,10 @@ public class CustomModelAttribController {
 
     @PostMapping("/reopen/{scoring-model}/{cod-attribute}/{attrib-value-min}/{attrib-value-max}")
     public ResponseEntity<CustomResponse> reopen(
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("scoring-model") String scoringModel,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("cod-attribute") String codAttribute,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("attrib-value-min") String attribValueMin,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("attrib-value-max") String attribValueMax
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("scoring-model") String scoringModel,
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("cod-attribute") String codAttribute,
+            @Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("attrib-value-min") String attribValueMin,
+            @Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("attrib-value-max") String attribValueMax
     ) {
         service.reopen(
                 repository,
@@ -126,17 +126,17 @@ public class CustomModelAttribController {
 
     @PostMapping("/authorize/{scoring-model}/{cod-attribute}/{attrib-value-min}/{attrib-value-max}")
     public ResponseEntity<CustomResponse> authorize(
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("scoring-model") String scoringModel,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("cod-attribute") String codAttribute,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("attrib-value-min") String attribValueMin,
-            @Valid @NotNull @Size(min = 1, max = 24) @PathVariable("attrib-value-max") String attribValueMax
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("scoring-model") String scoringModel,
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("cod-attribute") String codAttribute,
+            @Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("attrib-value-min") String attribValueMin,
+            @Valid @NotBlank @Size(min = 1, max = 24) @PathVariable("attrib-value-max") String attribValueMax
     ) {
         service.authorize(
                 repository,
                 CustomModelAttribDTO.class,
                 CustomModelAttribEntity.class,
                 getSpec(List.of(CodRecordStatus.N, CodRecordStatus.M, CodRecordStatus.X, CodRecordStatus.R), scoringModel, codAttribute, attribValueMin, attribValueMax),
-                scoringModel + "," + codAttribute + "," + attribValueMin + "," + attribValueMax,
+                scoringModel + ";" + codAttribute + ";" + attribValueMin + ";" + attribValueMax,
                 mapper,
                 this.id(CodRecordStatus.A, scoringModel, codAttribute, attribValueMin, attribValueMax),
                 this.id(CodRecordStatus.C, scoringModel, codAttribute, attribValueMin, attribValueMax)

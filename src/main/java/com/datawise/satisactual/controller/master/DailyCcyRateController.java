@@ -46,7 +46,7 @@ public class DailyCcyRateController {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, DailyCcyRateDTO.class));
     }
 
-    @GetMapping("/{id}/{date}")
+    @GetMapping("/{id}/{date}/{base-currency}")
     public ResponseEntity<DailyCcyRateDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
             @Valid @NotNull @DateTimeFormat(pattern="yyyy-MM-dd") @JsonFormat(pattern="yyyy-MM-dd") @PathVariable("date") LocalDate date,
@@ -85,7 +85,7 @@ public class DailyCcyRateController {
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Update operation completed successfully").build());
     }
 
-    @DeleteMapping("/delete/{id}/{date}")
+    @DeleteMapping("/delete/{id}/{date}/{base-currency}")
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
             @Valid @NotNull @DateTimeFormat(pattern="yyyy-MM-dd") @JsonFormat(pattern="yyyy-MM-dd") @PathVariable("date") LocalDate date,
@@ -105,7 +105,7 @@ public class DailyCcyRateController {
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Delete operation completed successfully").build());
     }
 
-    @PostMapping("/reopen/{id}/{date}")
+    @PostMapping("/reopen/{id}/{date}/{base-currency}")
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
             @Valid @NotNull @DateTimeFormat(pattern="yyyy-MM-dd") @JsonFormat(pattern="yyyy-MM-dd") @PathVariable("date") LocalDate date,

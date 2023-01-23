@@ -132,7 +132,7 @@ public class IntRateController {
                 IntRateDTO.class,
                 IntRateEntity.class,
                 getSpec(List.of(CodRecordStatus.N, CodRecordStatus.M, CodRecordStatus.X, CodRecordStatus.R), id, date),
-                id,
+                id + ";" + date,
                 mapper,
                 this.id(id, CodRecordStatus.A, date),
                 this.id(id, CodRecordStatus.C, date)

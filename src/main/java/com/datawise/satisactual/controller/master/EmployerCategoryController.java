@@ -116,7 +116,7 @@ public class EmployerCategoryController {
                 repository,
                 EmployerCategoryDTO.class,
                 EmployerCategoryEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                getSpec(Arrays.asList(CodRecordStatus.N, CodRecordStatus.M, CodRecordStatus.X, CodRecordStatus.R), id),
                 id,
                 mapper,
                 this.id.apply(id, CodRecordStatus.A),

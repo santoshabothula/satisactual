@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.List;
@@ -43,12 +42,11 @@ public class CustAttributeGroupController {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, CustAttributeGroupDTO.class));
     }
 
-    @GetMapping("/{id}/{date}")
+    @GetMapping("/{id}")
     public ResponseEntity<CustAttributeGroupDTO> get(
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
-            @Valid @NotNull @PathVariable("desc") String desc
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id(id, CodRecordStatus.A, desc), mapper, CustAttributeGroupDTO.class));
+        return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id(id, CodRecordStatus.A), mapper, CustAttributeGroupDTO.class));
     }
 
     @PostMapping("/save")
@@ -57,11 +55,11 @@ public class CustAttributeGroupController {
                 repository,
                 dto,
                 CustAttributeGroupEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodAttributeGroup(), dto.getAttributeGroupDesc()),
-                dto.getCodAttributeGroup() + ";" + dto.getAttributeGroupDesc(),
+                getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodAttributeGroup()),
+                dto.getCodAttributeGroup(),
                 mapper,
-                this.id(dto.getCodAttributeGroup(), CodRecordStatus.N, dto.getAttributeGroupDesc()),
-                this.id(dto.getCodAttributeGroup(), CodRecordStatus.A, dto.getAttributeGroupDesc())
+                this.id(dto.getCodAttributeGroup(), CodRecordStatus.N),
+                this.id(dto.getCodAttributeGroup(), CodRecordStatus.A)
         );
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Save operation completed successfully").build());
     }
@@ -72,67 +70,64 @@ public class CustAttributeGroupController {
                 repository,
                 dto,
                 CustAttributeGroupEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodAttributeGroup(), dto.getAttributeGroupDesc()),
-                dto.getCodAttributeGroup() + ";" + dto.getAttributeGroupDesc(),
+                getSpec(Arrays.asList(CodRecordStatus.values()), dto.getCodAttributeGroup()),
+                dto.getCodAttributeGroup(),
                 mapper,
-                this.id(dto.getCodAttributeGroup(), CodRecordStatus.M, dto.getAttributeGroupDesc()),
-                this.id(dto.getCodAttributeGroup(), CodRecordStatus.A, dto.getAttributeGroupDesc())
+                this.id(dto.getCodAttributeGroup(), CodRecordStatus.M),
+                this.id(dto.getCodAttributeGroup(), CodRecordStatus.A)
         );
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Update operation completed successfully").build());
     }
 
-    @DeleteMapping("/delete/{id}/{date}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<CustomResponse> delete(
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
-            @Valid @NotBlank @PathVariable("desc") String desc
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {
         service.delete(
                 repository,
                 CustAttributeGroupDTO.class,
                 CustAttributeGroupEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), id, desc),
-                id + ";" + desc,
+                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                id,
                 mapper,
-                this.id(id, CodRecordStatus.X, desc),
-                this.id(id, CodRecordStatus.C, desc),
-                this.id(id, CodRecordStatus.A, desc)
+                this.id(id, CodRecordStatus.X),
+                this.id(id, CodRecordStatus.C),
+                this.id(id, CodRecordStatus.A)
         );
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Delete operation completed successfully").build());
     }
 
-    @PostMapping("/reopen/{id}/{date}")
+    @PostMapping("/reopen/{id}")
     public ResponseEntity<CustomResponse> reopen(
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
-            @Valid @NotNull @PathVariable("desc") String desc
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {
         service.reopen(
                 repository,
                 CustAttributeGroupDTO.class,
                 CustAttributeGroupEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), id, desc),
-                id + ";" + desc,
+                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                id,
                 mapper,
-                this.id(id, CodRecordStatus.R, desc),
-                this.id(id, CodRecordStatus.A, desc),
-                this.id(id, CodRecordStatus.C, desc)
+                this.id(id, CodRecordStatus.R),
+                this.id(id, CodRecordStatus.A),
+                this.id(id, CodRecordStatus.C)
         );
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Reopen operation completed successfully").build());
     }
 
     @PostMapping("/authorize/{id}")
     public ResponseEntity<CustomResponse> authorize(
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
-            @Valid @NotNull @PathVariable("desc") String desc
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {
         service.authorize(
                 repository,
                 CustAttributeGroupDTO.class,
                 CustAttributeGroupEntity.class,
-                getSpec(List.of(CodRecordStatus.N, CodRecordStatus.M, CodRecordStatus.X, CodRecordStatus.R), id, desc),
+                getSpec(List.of(CodRecordStatus.N, CodRecordStatus.M, CodRecordStatus.X, CodRecordStatus.R), id),
                 id,
                 mapper,
-                this.id(id, CodRecordStatus.A, desc),
-                this.id(id, CodRecordStatus.C, desc)
+                this.id(id, CodRecordStatus.A),
+                this.id(id, CodRecordStatus.C)
         );
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Authorize request completed successfully").build());
     }
@@ -142,7 +137,6 @@ public class CustAttributeGroupController {
         TypeMap<CustAttributeGroupEntity, CustAttributeGroupDTO> dtoMap = mapper.createTypeMap(CustAttributeGroupEntity.class, CustAttributeGroupDTO.class);
         dtoMap.addMapping(c -> c.getId().getCodAttributeGroup(), CustAttributeGroupDTO::setCodAttributeGroup);
         dtoMap.addMapping(c -> c.getId().getCodRecordStatus(), CustAttributeGroupDTO::setCodRecordStatus);
-        dtoMap.addMapping(c -> c.getId().getAttributeGroupDesc(), CustAttributeGroupDTO::setAttributeGroupDesc);
         dtoMap.addMapping(MakerCheckerEntity::getLastMakerId, CustAttributeGroupDTO::setLastMakerId);
         dtoMap.addMapping(MakerCheckerEntity::getLastMakerDateTime, CustAttributeGroupDTO::setLastMakerDateTime);
         dtoMap.addMapping(MakerCheckerEntity::getLastCheckerId, CustAttributeGroupDTO::setLastCheckerId);
@@ -155,13 +149,12 @@ public class CustAttributeGroupController {
         entityMap.addMapping(MakerCheckerDTO::getLastCheckerDateTime, CustAttributeGroupEntity::setLastCheckerDateTime);
     }
 
-    private CustAttributeGroupEmbeddedKey id(String code, CodRecordStatus status, String desc) {
-        return CustAttributeGroupEmbeddedKey.builder().codAttributeGroup(code).codRecordStatus(status.name()).attributeGroupDesc(desc).build();
+    private CustAttributeGroupEmbeddedKey id(String code, CodRecordStatus status) {
+        return CustAttributeGroupEmbeddedKey.builder().codAttributeGroup(code).codRecordStatus(status.name()).build();
     }
 
-    private Specification<CustAttributeGroupEntity> getSpec(List<CodRecordStatus> statuses, String code, String desc) {
+    private Specification<CustAttributeGroupEntity> getSpec(List<CodRecordStatus> statuses, String code) {
         return repository.findRecordWithStatusIn(statuses)
-                .and(repository.findRecordWithCode(code, "codAttributeGroup"))
-                .and(repository.findRecordWithCode(desc, "attributeGroupDesc"));
+                .and(repository.findRecordWithCode(code, "codAttributeGroup"));
     }
 }

@@ -93,7 +93,6 @@ public class ContactChannelDTO extends BaseDTO {
 	@JsonProperty("txt_imap_client")
     private String imapClient;
 
-    @Size(min = 1, max = 255)
 	@JsonProperty("num_imap_port")
     private Integer imapPort;
 

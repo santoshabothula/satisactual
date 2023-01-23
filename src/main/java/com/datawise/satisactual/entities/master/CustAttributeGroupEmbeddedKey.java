@@ -19,9 +19,6 @@ public class CustAttributeGroupEmbeddedKey implements Serializable {
     @Column(name = "cod_attribute_group")
     private String codAttributeGroup;
 
-    @Column(name = "txt_attribute_group_desc")
-    private String attributeGroupDesc;
-
     @Column(name = "cod_rec_status")
     private String codRecordStatus;
 }

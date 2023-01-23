@@ -44,7 +44,7 @@ public class BlockCodeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BlockCodeDTO> get(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+    public ResponseEntity<BlockCodeDTO> get(@Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("id") String id) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id.apply(id, CodRecordStatus.A), mapper, BlockCodeDTO.class));
     }
 
@@ -79,7 +79,7 @@ public class BlockCodeController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<CustomResponse> delete(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+    public ResponseEntity<CustomResponse> delete(@Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("id") String id) {
         service.delete(
                 repository,
                 BlockCodeDTO.class,
@@ -95,7 +95,7 @@ public class BlockCodeController {
     }
 
     @PostMapping("/reopen/{id}")
-    public ResponseEntity<CustomResponse> reopen(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+    public ResponseEntity<CustomResponse> reopen(@Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("id") String id) {
         service.reopen(
                 repository,
                 BlockCodeDTO.class,
@@ -111,12 +111,12 @@ public class BlockCodeController {
     }
 
     @PostMapping("/authorize/{id}")
-    public ResponseEntity<CustomResponse> authorize(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
+    public ResponseEntity<CustomResponse> authorize(@Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("id") String id) {
         service.authorize(
                 repository,
                 BlockCodeDTO.class,
                 BlockCodeEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                getSpec(Arrays.asList(CodRecordStatus.R, CodRecordStatus.X, CodRecordStatus.M, CodRecordStatus.N), id),
                 id,
                 mapper,
                 this.id.apply(id, CodRecordStatus.A),

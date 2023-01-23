@@ -43,12 +43,12 @@ public class DpdClassController {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, DpdClassDTO.class));
     }
 
-    @GetMapping("/{id}/{dpd-class}/{flg-rewrite}")
+    @GetMapping("/{dpd-class}/{flg-rewrite}")
     public ResponseEntity<DpdClassDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("dpd-class") String dpdClass,
-            @Valid @NotBlank @Size(min = 1, max = 1) @PathVariable("flg-rewrite") FlagYesNo isRewrite
+            @PathVariable("flg-rewrite") FlagYesNo isRewrite
     ) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id(dpdClass, CodRecordStatus.A, isRewrite), mapper, DpdClassDTO.class));
+        return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id(dpdClass, CodRecordStatus.A, isRewrite.name()), mapper, DpdClassDTO.class));
     }
 
     @PostMapping("/save")
@@ -83,53 +83,53 @@ public class DpdClassController {
 
     @DeleteMapping("/delete/{dpd-class}/{flg-rewrite}")
     public ResponseEntity<CustomResponse> delete(
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("doc-type") String dpdClass,
-            @Valid @NotBlank @Size(min = 1, max = 1) @PathVariable("doc-purpose") FlagYesNo docPurpose
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("dpd-class") String dpdClass,
+            @PathVariable("flg-rewrite") FlagYesNo docPurpose
     ) {
         service.delete(
                 repository,
                 DpdClassDTO.class,
                 DpdClassEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()),dpdClass, docPurpose), dpdClass + ";" + docPurpose,
+                getSpec(Arrays.asList(CodRecordStatus.values()),dpdClass, docPurpose.name()), dpdClass + ";" + docPurpose.name(),
                 mapper,
-                this.id(dpdClass, CodRecordStatus.X, docPurpose),
-                this.id(dpdClass, CodRecordStatus.C, docPurpose),
-                this.id(dpdClass, CodRecordStatus.A, docPurpose)
+                this.id(dpdClass, CodRecordStatus.X, docPurpose.name()),
+                this.id(dpdClass, CodRecordStatus.C, docPurpose.name()),
+                this.id(dpdClass, CodRecordStatus.A, docPurpose.name())
         );
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Delete operation completed successfully").build());
     }
 
     @PostMapping("/reopen/{dpd-class}/{flg-rewrite}")
     public ResponseEntity<CustomResponse> reopen(
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("doc-type") String dpdClass,
-            @Valid @NotBlank @Size(min = 1, max = 1) @PathVariable("doc-purpose") FlagYesNo docPurpose
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("dpd-class") String dpdClass,
+            @PathVariable("flg-rewrite") FlagYesNo docPurpose
     ) {
         service.reopen(
                 repository,
                 DpdClassDTO.class,
                 DpdClassEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), dpdClass, docPurpose), dpdClass + ";" + docPurpose,
+                getSpec(Arrays.asList(CodRecordStatus.values()), dpdClass, docPurpose.name()), dpdClass + ";" + docPurpose,
                 mapper,
-                this.id(dpdClass, CodRecordStatus.R, docPurpose),
-                this.id(dpdClass, CodRecordStatus.A, docPurpose),
-                this.id(dpdClass, CodRecordStatus.C, docPurpose)
+                this.id(dpdClass, CodRecordStatus.R, docPurpose.name()),
+                this.id(dpdClass, CodRecordStatus.A, docPurpose.name()),
+                this.id(dpdClass, CodRecordStatus.C, docPurpose.name())
         );
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Reopen operation completed successfully").build());
     }
 
     @PostMapping("/authorize/{dpd-class}/{flg-rewrite}")
     public ResponseEntity<CustomResponse> authorize(
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("doc-type") String dpdClass,
-            @Valid @NotBlank @Size(min = 1, max = 1) @PathVariable("doc-purpose") FlagYesNo docPurpose
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("dpd-class") String dpdClass,
+            @PathVariable("flg-rewrite") FlagYesNo docPurpose
     ) {
         service.authorize(
                 repository,
                 DpdClassDTO.class,
                 DpdClassEntity.class,
-                getSpec(List.of(CodRecordStatus.N, CodRecordStatus.M, CodRecordStatus.X, CodRecordStatus.R), dpdClass, docPurpose), dpdClass + ";" + docPurpose,
+                getSpec(List.of(CodRecordStatus.N, CodRecordStatus.M, CodRecordStatus.X, CodRecordStatus.R), dpdClass, docPurpose.name()), dpdClass + ";" + docPurpose,
                 mapper,
-                this.id(dpdClass, CodRecordStatus.A, docPurpose),
-                this.id(dpdClass, CodRecordStatus.C, docPurpose)
+                this.id(dpdClass, CodRecordStatus.A, docPurpose.name()),
+                this.id(dpdClass, CodRecordStatus.C, docPurpose.name())
         );
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Authorize request completed successfully").build());
     }
@@ -152,11 +152,11 @@ public class DpdClassController {
         entityMap.addMapping(MakerCheckerDTO::getLastCheckerDateTime, DpdClassEntity::setLastCheckerDateTime);
     }
 
-    private DpdClassEmbeddedKey id(String type, CodRecordStatus status, FlagYesNo purpose) {
-        return DpdClassEmbeddedKey.builder().codDpdClass(type).codRecordStatus(status.name()).isRewrite(purpose.name()).build();
+    private DpdClassEmbeddedKey id(String type, CodRecordStatus status, String purpose) {
+        return DpdClassEmbeddedKey.builder().codDpdClass(type).codRecordStatus(status.name()).isRewrite(purpose).build();
     }
 
-    private Specification<DpdClassEntity> getSpec(List<CodRecordStatus> statuses, String dpdClass, FlagYesNo isRewrite) {
+    private Specification<DpdClassEntity> getSpec(List<CodRecordStatus> statuses, String dpdClass, String isRewrite) {
         return repository.findRecordWithStatusIn(statuses)
                 .and(repository.findRecordWithCode(dpdClass, "codDpdClass"))
                 .and(repository.findRecordWithCode(isRewrite, "isRewrite"));

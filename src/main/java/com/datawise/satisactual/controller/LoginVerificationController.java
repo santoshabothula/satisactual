@@ -90,6 +90,7 @@ public class LoginVerificationController {
 
             if (num_licensed_modules > 0 && num_valid_home_menu > 0) {
                 processUserOtherDetails(tokenDetails, userId);
+                tokenDetails.setUserProfile(userProfile);
             } else {
                 logintype = "fail";
                 allow = LoginVerificationUtil.STATUS_LIC_EXPIRED;
@@ -108,7 +109,6 @@ public class LoginVerificationController {
         tokenDetails.setStatusMessage(loginVerificationUtil.loginStatusDesc(allow));
         userProfile.setCodLoginStatus(allow);
         userProfile.setTxtLoginStatus(tokenDetails.getStatusMessage());
-        tokenDetails.setUserProfile(userProfile);
         tokenDetails.setCodLoginStatus(allow);
         tokenDetails.setTxtLoginStatus(tokenDetails.getStatusMessage());
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

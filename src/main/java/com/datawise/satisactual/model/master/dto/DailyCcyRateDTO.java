@@ -1,9 +1,11 @@
 package com.datawise.satisactual.model.master.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -18,10 +20,13 @@ public class DailyCcyRateDTO extends BaseDTO {
 	@JsonProperty("cod_currency")
     private String codCurrency;
 
+    @NotBlank
     @Size(min = 1, max = 4)
 	@JsonProperty("cod_base_currency")
     private String codBaseCurrency;
 
+    @NotNull
+    @JsonFormat(pattern="yyyy-MM-dd")
 	@JsonProperty("dat_rate_set")
     private LocalDate rateSet;
 

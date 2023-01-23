@@ -27,7 +27,7 @@ import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("/mst/fin_ratios_ind_benchmark")
+@RequestMapping("/mst/fin-ratios-ind-benchmark")
 public class FinRatiosIndBenchmarkController {
 
     @Autowired
@@ -42,7 +42,7 @@ public class FinRatiosIndBenchmarkController {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, FinRatiosIndBenchmarkDTO.class));
     }
 
-    @GetMapping("/{id}/{ratio}/{industry-grp}")
+    @GetMapping("/{ratio}/{industry-grp}")
     public ResponseEntity<FinRatiosIndBenchmarkDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("ratio") String ratio,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("industry-grp") String industryGrp

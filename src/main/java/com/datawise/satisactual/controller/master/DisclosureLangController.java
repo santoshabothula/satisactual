@@ -80,7 +80,7 @@ public class DisclosureLangController {
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Update operation completed successfully").build());
     }
 
-    @DeleteMapping("/delete/{DisclosureLang}/{thirdParty}")
+    @DeleteMapping("/delete/{disclosure}/{language}")
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("disclosure") String disclosure,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("language") String language
@@ -99,7 +99,7 @@ public class DisclosureLangController {
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Delete operation completed successfully").build());
     }
 
-    @PostMapping("/reopen/{DisclosureLang}/{thirdParty}")
+    @PostMapping("/reopen/{disclosure}/{language}")
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("disclosure") String disclosure,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("language") String language
@@ -118,7 +118,7 @@ public class DisclosureLangController {
         return ResponseEntity.status(HttpStatus.OK).body(CustomResponse.builder().message("Reopen operation completed successfully").build());
     }
 
-    @PostMapping("/authorize/{DisclosureLang}/{thirdParty}")
+    @PostMapping("/authorize/{disclosure}/{language}")
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("disclosure") String disclosure,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("language") String language

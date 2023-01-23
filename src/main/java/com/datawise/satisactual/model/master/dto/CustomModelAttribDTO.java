@@ -17,14 +17,17 @@ public class CustomModelAttribDTO extends BaseDTO {
 	@JsonProperty("cod_scoring_model")
     private String codScoringModel;
 
+    @NotBlank
     @Size(min = 1, max = 4)
 	@JsonProperty("cod_attribute")
     private String codAttribute;
 
+    @NotBlank
     @Size(min = 1, max = 24)
 	@JsonProperty("txt_attrib_value_min")
     private String attribValueMin;
 
+    @NotBlank
     @Size(min = 1, max = 24)
 	@JsonProperty("txt_attrib_value_max")
     private String attribValueMax;

@@ -115,8 +115,7 @@ public class FunderController {
         service.authorize(
                 repository,
                 FunderDTO.class,
-                FunderEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                FunderEntity.class, getSpec(Arrays.asList(CodRecordStatus.N, CodRecordStatus.M, CodRecordStatus.X, CodRecordStatus.R), id),
                 id,
                 mapper,
                 this.id.apply(id, CodRecordStatus.A),

@@ -24,6 +24,9 @@ public class CustAttributeGroupEntity extends MakerCheckerEntity {
     @Column(name = "num_display_sequence")
     private Integer displaySequence;
 
+    @Column(name = "txt_attribute_group_desc")
+    private String attributeGroupDesc;
+
     @Column(name = "flg_default_value")
     private String defaultValue;
 

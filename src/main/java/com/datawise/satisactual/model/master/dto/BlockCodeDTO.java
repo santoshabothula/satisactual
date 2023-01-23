@@ -2,6 +2,7 @@ package com.datawise.satisactual.model.master.dto;
 
 import com.datawise.satisactual.enums.CodRecordStatus;
 import com.datawise.satisactual.enums.FlagYesNo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,25 +20,25 @@ public class BlockCodeDTO extends BaseDTO {
 
     @NotBlank
     @Size(min = 1, max = 12)
-    @Column(name = "cod_block")
+    @JsonProperty("cod_block")
     private String codBlock;
 
     @Size(min = 1, max = 12)
-    @Column(name = "cod_district")
+    @JsonProperty("cod_district")
     private String district;
 
     @Size(min = 1, max = 12)
-    @Column(name = "cod_state")
+    @JsonProperty("cod_state")
     private String state;
 
     @Size(min = 1, max = 4)
-    @Column(name = "cod_country")
+    @JsonProperty("cod_country")
     private String country;
 
     @Size(min = 1, max = 24)
-    @Column(name = "txt_block_name")
+    @JsonProperty("txt_block_name")
     private String blockName;
 
-    @Column(name = "flg_default_value")
+    @JsonProperty("flg_default_value")
     private FlagYesNo defaultValue;
 }

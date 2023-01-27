@@ -1,8 +1,10 @@
 package com.datawise.satisactual.model.master.dto;
 
 import com.datawise.satisactual.enums.FlagYesNo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -29,6 +31,8 @@ public class StmtCycleDTO extends BaseDTO {
 	@JsonProperty("num_days_stmt_lead_time")
     private Integer daysStmtLeadTime;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
 	@JsonProperty("dat_last_cycle_processed")
     private LocalDate lastCycleProcessed;
 

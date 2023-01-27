@@ -1,11 +1,13 @@
 package com.datawise.satisactual.model.master.dto;
 
 import com.datawise.satisactual.enums.FlagYesNo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -196,6 +198,8 @@ public class ThirdPartyDTO extends BaseDTO {
 	@JsonProperty("txt_registration_num")
     private String registrationNum;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
 	@JsonProperty("dat_registration")
     private LocalDate registration;
 

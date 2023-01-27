@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +46,7 @@ public class RegdEmployerController {
     @GetMapping("/{employer-shortname}/{id-third-party-employer}")
     public ResponseEntity<RegdEmployerDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("employer-shortname") String employerShortname,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id-third-party-employer") Long idThirdPartyEmployer
+            @Valid @NotNull @PathVariable("id-third-party-employer") Long idThirdPartyEmployer
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id(employerShortname, CodRecordStatus.A, idThirdPartyEmployer), mapper, RegdEmployerDTO.class));
     }
@@ -83,7 +84,7 @@ public class RegdEmployerController {
     @DeleteMapping("/delete/{employer-shortname}/{id-third-party-employer}")
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("employer-shortname") String employerShortname,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id-third-party-employer") Long idThirdPartyEmployer
+            @Valid @NotNull @PathVariable("id-third-party-employer") Long idThirdPartyEmployer
     ) {
         service.delete(
                 repository,
@@ -102,7 +103,7 @@ public class RegdEmployerController {
     @PostMapping("/reopen/{employer-shortname}/{id-third-party-employer}")
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("employer-shortname") String employerShortname,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id-third-party-employer") Long idThirdPartyEmployer
+            @Valid @NotNull @PathVariable("id-third-party-employer") Long idThirdPartyEmployer
     ) {
         service.reopen(
                 repository,
@@ -121,7 +122,7 @@ public class RegdEmployerController {
     @PostMapping("/authorize/{employer-shortname}/{id-third-party-employer}")
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("employer-shortname") String employerShortname,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id-third-party-employer") Long idThirdPartyEmployer
+            @Valid @NotNull @PathVariable("id-third-party-employer") Long idThirdPartyEmployer
     ) {
         service.authorize(
                 repository,

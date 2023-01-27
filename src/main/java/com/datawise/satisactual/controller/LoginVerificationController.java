@@ -2,10 +2,12 @@ package com.datawise.satisactual.controller;
 
 import com.datawise.satisactual.custom.models.*;
 import com.datawise.satisactual.entities.BlockedIp;
+import com.datawise.satisactual.entities.UserMaster;
 import com.datawise.satisactual.model.JwtTokenDetails;
 import com.datawise.satisactual.model.UserProfile;
 import com.datawise.satisactual.repository.BlockedIpRepository;
 import com.datawise.satisactual.repository.LoginVerificationRepository;
+import com.datawise.satisactual.repository.UserMasterRepository;
 import com.datawise.satisactual.utils.CryptoUtil;
 import com.datawise.satisactual.utils.JwtTokenCreator;
 import com.datawise.satisactual.utils.LoginVerificationUtil;
@@ -34,6 +36,8 @@ import java.util.*;
 public class LoginVerificationController {
 
     @Autowired
+    private UserMasterRepository repository;
+    @Autowired
     private BlockedIpRepository blockedIpRepository;
     @Autowired
     private LoginVerificationRepository loginVerificationRepository;
@@ -53,7 +57,13 @@ public class LoginVerificationController {
     public ResponseEntity<JwtTokenDetails> loginVerification(HttpServletRequest request) {
 
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
-        String password = new String(Base64.getDecoder().decode(request.getHeader(SecurityConstants.AUTHORIZATION_HEADER.toLowerCase()).replace(LoginVerificationUtil.TXT_BASIC + LoginVerificationUtil.SPACE, LoginVerificationUtil.EMPTY))).replace(userId + LoginVerificationUtil.COLAN, LoginVerificationUtil.EMPTY);
+
+        String password = "";
+        Optional<UserMaster> userMaster = repository.findById(userId);
+        if (userMaster.isPresent()) {
+            // password = new String(Base64.getDecoder().decode(request.getHeader(SecurityConstants.AUTHORIZATION_HEADER.toLowerCase()).replace(LoginVerificationUtil.TXT_BASIC + LoginVerificationUtil.SPACE, LoginVerificationUtil.EMPTY))).replace(userId + LoginVerificationUtil.COLAN, LoginVerificationUtil.EMPTY);
+            password = userMaster.get().getTxtUserSignature();
+        }
 
         int allow;
         int num_licensed_modules = 0;
@@ -69,7 +79,7 @@ public class LoginVerificationController {
         JwtTokenDetails tokenDetails = new JwtTokenDetails();
         verifyBlockedIP(request);
 
-        password = CryptoUtil.getEncryptedPassword(password);
+        // password = CryptoUtil.getEncryptedPassword(password);
         UserLoginDetails userLoginDetails = loginVerificationRepository.findByCodRecStatusAndTxtLoginIdAndTxtUserSignature(3, userId, password);
         if (Objects.isNull(userLoginDetails)) throw new RuntimeException("User not found");
 

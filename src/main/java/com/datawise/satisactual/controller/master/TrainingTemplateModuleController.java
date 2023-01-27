@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.List;
@@ -45,8 +46,8 @@ public class TrainingTemplateModuleController {
     @GetMapping("/{training-type}/{training-day}/{num-day-session}")
     public ResponseEntity<TrainingTemplateModuleDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("training-type") String trainingType,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("training-day") Integer trainingDay,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("num-day-session") Integer numDaySession
+            @Valid @NotNull @PathVariable("training-day") Integer trainingDay,
+            @Valid @NotNull @PathVariable("num-day-session") Integer numDaySession
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id(CodRecordStatus.A, trainingType, trainingDay, numDaySession), mapper, TrainingTemplateModuleDTO.class));
     }
@@ -84,8 +85,8 @@ public class TrainingTemplateModuleController {
     @DeleteMapping("/delete/{training-type}/{training-day}/{num-day-session}")
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("training-type") String trainingType,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("training-day") Integer trainingDay,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("num-day-session") Integer numDaySession
+            @Valid @NotNull @PathVariable("training-day") Integer trainingDay,
+            @Valid @NotNull @PathVariable("num-day-session") Integer numDaySession
     ) {
         service.delete(
                 repository,
@@ -104,8 +105,8 @@ public class TrainingTemplateModuleController {
     @PostMapping("/reopen/{training-type}/{training-day}/{num-day-session}")
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("training-type") String trainingType,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("training-day") Integer trainingDay,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("num-day-session") Integer numDaySession
+            @Valid @NotNull @PathVariable("training-day") Integer trainingDay,
+            @Valid @NotNull @PathVariable("num-day-session") Integer numDaySession
     ) {
         service.reopen(
                 repository,
@@ -124,8 +125,8 @@ public class TrainingTemplateModuleController {
     @PostMapping("/authorize/{training-type}/{training-day}/{num-day-session}")
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("training-type") String trainingType,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("training-day") Integer trainingDay,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("num-day-session") Integer numDaySession
+            @Valid @NotNull @PathVariable("training-day") Integer trainingDay,
+            @Valid @NotNull @PathVariable("num-day-session") Integer numDaySession
     ) {
         service.authorize(
                 repository,

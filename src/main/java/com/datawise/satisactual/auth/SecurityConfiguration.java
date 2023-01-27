@@ -26,6 +26,8 @@ public class SecurityConfiguration {
 
     @Autowired
     private LogoutService logoutHandler;
+    @Autowired
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -40,7 +42,7 @@ public class SecurityConfiguration {
                 .httpBasic()
                 .and().logout().logoutUrl("/logout").addLogoutHandler(logoutHandler)
                 .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
-                .and().cors().and().csrf().disable().build();
+                .and().cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint).and().build();
     }
 
     @Bean

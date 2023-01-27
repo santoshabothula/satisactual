@@ -49,20 +49,18 @@ public class JwtTokenCreator {
                     .signWith(key)
                     .compact();
 
-            if (request.getHeader(SecurityConstants.REFRESH_HEADER) == null) {
+            String refreshToken = Jwts.builder()
+                    .setIssuer(issuer)
+                    .setExpiration(new Date(validTillDate.getTime() + expirationLimit))
+                    .setSubject(subject)
+                    .claim(SecurityConstants.USER_NAME, username)
+                    .claim(SecurityConstants.AUTHORITIES, "TEST_ROLE")
+                    .signWith(key)
+                    .compact();
 
-                String refreshToken = Jwts.builder()
-                        .setIssuer(issuer)
-                        .setExpiration(validTillDate)
-                        .setSubject(subject)
-                        .claim(SecurityConstants.USER_NAME, username)
-                        .claim(SecurityConstants.AUTHORITIES, "TEST_ROLE")
-                        .signWith(key)
-                        .compact();
+            tokenDetails.setRefreshToken(refreshToken);
+            log.info("Refresh Token successfully generated: {}", refreshToken);
 
-                tokenDetails.setRefreshToken(refreshToken);
-                log.info("Refresh Token successfully generated: {}", refreshToken);
-            }
             tokenDetails.setToken(jwtToken);
             tokenDetails.setValidTillDate(validTillDate);
             tokenDetails.setIssuedBy("");

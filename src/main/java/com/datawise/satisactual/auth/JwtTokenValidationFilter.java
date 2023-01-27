@@ -26,7 +26,7 @@ public class JwtTokenValidationFilter extends OncePerRequestFilter {
         try {
             logger.info("Request received for Jwt token validation");
             JwtTokenValidator validator = new JwtTokenValidator();
-            validator.validateJwtToken(request, response, false, jwtKey);
+            validator.validateJwtToken(request, response, jwtKey);
             filterChain.doFilter(request, response);
         } catch (BadCredentialsException ex) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());

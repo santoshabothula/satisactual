@@ -82,8 +82,8 @@ public class RankController {
 
     @DeleteMapping("/delete/{rank}/{wing}")
     public ResponseEntity<CustomResponse> delete(
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("question-type") String Rank,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("base-question-type") String wing
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("rank") String Rank,
+            @Valid @NotBlank @Size(min = 1, max = 6) @PathVariable("wing") String wing
     ) {
         service.delete(
                 repository,
@@ -101,8 +101,8 @@ public class RankController {
 
     @PostMapping("/reopen/{rank}/{wing}")
     public ResponseEntity<CustomResponse> reopen(
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("question-type") String Rank,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("base-question-type") String wing
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("rank") String Rank,
+            @Valid @NotBlank @Size(min = 1, max = 6) @PathVariable("wing") String wing
     ) {
         service.reopen(
                 repository,
@@ -120,8 +120,8 @@ public class RankController {
 
     @PostMapping("/authorize/{rank}/{wing}")
     public ResponseEntity<CustomResponse> authorize(
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("question-type") String rank,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("base-question-type") String wing
+            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("rank") String rank,
+            @Valid @NotBlank @Size(min = 1, max = 6) @PathVariable("wing") String wing
     ) {
         service.authorize(
                 repository,

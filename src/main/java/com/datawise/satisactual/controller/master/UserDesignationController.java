@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +46,7 @@ public class UserDesignationController {
     @GetMapping("/{designation}/{id-third-party}")
     public ResponseEntity<UserDesignationDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("designation") String designation,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id-third-party") Long idThirdParty
+            @Valid @NotNull @PathVariable("id-third-party") Long idThirdParty
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id(designation, CodRecordStatus.A, idThirdParty), mapper, UserDesignationDTO.class));
     }
@@ -83,7 +84,7 @@ public class UserDesignationController {
     @DeleteMapping("/delete/{designation}/{id-third-party}")
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("designation") String designation,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id-third-party") Long idThirdParty
+            @Valid @NotNull @PathVariable("id-third-party") Long idThirdParty
     ) {
         service.delete(
                 repository,
@@ -102,7 +103,7 @@ public class UserDesignationController {
     @PostMapping("/reopen/{designation}/{id-third-party}")
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("designation") String designation,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id-third-party") Long idThirdParty
+            @Valid @NotNull @PathVariable("id-third-party") Long idThirdParty
     ) {
         service.reopen(
                 repository,
@@ -121,7 +122,7 @@ public class UserDesignationController {
     @PostMapping("/authorize/{designation}/{id-third-party}")
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("designation") String designation,
-            @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id-third-party") Long idThirdParty
+            @Valid @NotNull @PathVariable("id-third-party") Long idThirdParty
     ) {
         service.authorize(
                 repository,

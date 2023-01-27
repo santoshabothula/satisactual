@@ -12,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.crypto.SecretKey;
 import javax.servlet.http.HttpServletRequest;
@@ -24,17 +25,19 @@ import java.util.List;
 @Component
 public class JwtTokenValidator {
 
-    public void validateJwtToken(HttpServletRequest request, HttpServletResponse response, boolean isRefreshValidation, String jwtKey) {
-
+    public void validateJwtToken(HttpServletRequest request, HttpServletResponse response, String jwtKey) {
         String token = request.getHeader(SecurityConstants.AUTHORIZATION_HEADER);
         String refresh = request.getHeader(SecurityConstants.REFRESH_HEADER);
         log.info("Authorization Token: {}", token);
+        validateToken(StringUtils.hasText(refresh) ? refresh : token, jwtKey);
+    }
 
+    private void validateToken(String token, String jwtKey) {
         if (token != null && !token.contains("Basic")) {
             try {
                 SecretKey key = Keys.hmacShaKeyFor(jwtKey.getBytes(StandardCharsets.UTF_8));
 
-                Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(isRefreshValidation ? refresh : token).getBody();
+                Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
 
                 String username = String.valueOf(claims.get(SecurityConstants.USER_NAME));
                 String authorities = (String) claims.get(SecurityConstants.AUTHORITIES);
@@ -56,7 +59,6 @@ public class JwtTokenValidator {
         for (String role : roles) {
             grantedAuthorityList.add(new SimpleGrantedAuthority(role.replaceAll("\\s+", "")));
         }
-
         return grantedAuthorityList;
     }
 }

@@ -42,7 +42,7 @@ public class PanchayatCodeController {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, PanchayatCodeDTO.class));
     }
 
-    @GetMapping("/{panchayat}/{block}/{district}/{state}/{country}/{country}")
+    @GetMapping("/{panchayat}/{block}/{district}/{state}/{country}")
     public ResponseEntity<PanchayatCodeDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("panchayat") String panchayat,
             @Valid @NotBlank @Size(min = 1, max = 12) @PathVariable("block") String block,
@@ -156,6 +156,7 @@ public class PanchayatCodeController {
         dtoMap.addMapping(c -> c.getId().getCodBlock(), PanchayatCodeDTO::setCodBlock);
         dtoMap.addMapping(c -> c.getId().getCodCountry(), PanchayatCodeDTO::setCodCountry);
         dtoMap.addMapping(c -> c.getId().getCodDistrict(), PanchayatCodeDTO::setCodDistrict);
+        dtoMap.addMapping(c -> c.getId().getCodState(), PanchayatCodeDTO::setCodState);
         dtoMap.addMapping(MakerCheckerEntity::getLastMakerId, PanchayatCodeDTO::setLastMakerId);
         dtoMap.addMapping(MakerCheckerEntity::getLastMakerDateTime, PanchayatCodeDTO::setLastMakerDateTime);
         dtoMap.addMapping(MakerCheckerEntity::getLastCheckerId, PanchayatCodeDTO::setLastCheckerId);
@@ -178,6 +179,6 @@ public class PanchayatCodeController {
                 .and(repository.findRecordWithCode(block, "codBlock"))
                 .and(repository.findRecordWithCode(country, "codCountry"))
                 .and(repository.findRecordWithCode(district, "codDistrict"))
-                .and(repository.findRecordWithCode(state, "state"));
+                .and(repository.findRecordWithCode(state, "codState"));
     }
 }

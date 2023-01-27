@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -17,7 +18,7 @@ public class RegdEmployerDTO extends BaseDTO {
 	@JsonProperty("txt_employer_shortname")
     private String employerShortname;
 
-    @NotBlank
+    @NotNull
 	@JsonProperty("id_third_party_employer")
     private Long idThirdPartyEmployer;
 

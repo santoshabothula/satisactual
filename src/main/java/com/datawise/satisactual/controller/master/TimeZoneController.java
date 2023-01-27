@@ -116,7 +116,7 @@ public class TimeZoneController {
                 repository,
                 TimeZoneDTO.class,
                 TimeZoneEntity.class,
-                getSpec(Arrays.asList(CodRecordStatus.values()), id),
+                getSpec(Arrays.asList(CodRecordStatus.R, CodRecordStatus.X, CodRecordStatus.M, CodRecordStatus.N), id),
                 id,
                 mapper,
                 this.id.apply(id, CodRecordStatus.A),

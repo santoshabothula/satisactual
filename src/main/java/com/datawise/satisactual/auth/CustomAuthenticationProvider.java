@@ -1,6 +1,7 @@
 package com.datawise.satisactual.auth;
 
 import com.datawise.satisactual.entities.UserMaster;
+import com.datawise.satisactual.enums.FlagYesNo;
 import com.datawise.satisactual.repository.LoginVerificationRepository;
 import com.datawise.satisactual.repository.UserMasterRepository;
 import com.datawise.satisactual.utils.CryptoUtil;
@@ -40,6 +41,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }
 
         if (!userMaster.get().getTxtUserSignature().equals(signature)) {
+            if (!FlagYesNo.Y.name().equalsIgnoreCase(userMaster.get().getFlgDisabled()) && userMaster.get().getNumFailedPwd() >= 5) {
+                userMaster.get().setFlgDisabled(FlagYesNo.Y.name());
+                repository.save(userMaster.get());
+            }
             loginVerificationRepository.updateUserLoginFailed(userMaster.get().getNumFailedPwd() + 1, username);
             throw new BadCredentialsException("Password mismatch");
         }

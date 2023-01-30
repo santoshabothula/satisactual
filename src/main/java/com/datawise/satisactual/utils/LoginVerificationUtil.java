@@ -52,12 +52,11 @@ public class LoginVerificationUtil {
                 if (Objects.isNull(details)) status = STATUS_NO_REC_FOUND;
 
                 if (Objects.nonNull(details)) {
-                    if (details.getNumFailedPwdLimitExceeded().equalsIgnoreCase("Y")) {
-                        status = STATUS_FAILED_PWD_LIMIT;
-                    }
-
                     if ((status == 0) && "Y".equalsIgnoreCase(details.getFlgDisabled())) {
                         status = STATUS_DISABLED;
+                    }
+                    if (details.getNumFailedPwdLimitExceeded().equalsIgnoreCase("Y")) {
+                        status = STATUS_FAILED_PWD_LIMIT;
                     }
                     if ((status == 0) && details.getFlgForcePasswdChg().equalsIgnoreCase("Y") || details.getFlgPasswdExpired().equalsIgnoreCase("Y")) {
                         status = STATUS_PWD_EXPIRED;

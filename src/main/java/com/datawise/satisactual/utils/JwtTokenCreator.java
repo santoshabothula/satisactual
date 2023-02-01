@@ -51,7 +51,7 @@ public class JwtTokenCreator {
 
             String refreshToken = Jwts.builder()
                     .setIssuer(issuer)
-                    .setExpiration(new Date(validTillDate.getTime() + expirationLimit))
+                    .setExpiration(new Date(validTillDate.getTime() * expirationLimit))
                     .setSubject(subject)
                     .claim(SecurityConstants.USER_NAME, username)
                     .claim(SecurityConstants.AUTHORITIES, "TEST_ROLE")

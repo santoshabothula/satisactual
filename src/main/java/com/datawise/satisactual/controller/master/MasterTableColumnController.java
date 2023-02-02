@@ -2,6 +2,8 @@ package com.datawise.satisactual.controller.master;
 
 import com.datawise.satisactual.model.master.dto.MasterTableColumnDTO;
 import com.datawise.satisactual.service.master.MasterTableColumnService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ public class MasterTableColumnController {
     private MasterTableColumnService service;
 
     @GetMapping("/{table-name}")
+    @ApiOperation(value = "Master Table Column", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<List<MasterTableColumnDTO>> getAllColumnsByTableName(@PathVariable("table-name") String tableName) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getAllColumnsByTableName(tableName));
     }

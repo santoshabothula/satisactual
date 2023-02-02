@@ -28,12 +28,12 @@ public class MasterTableColumnEntity extends MakerCheckerEntity {
     private String columnDatatype;
 
     @Column(name = "flg_primary_key_component")
-    private FlagYesNo isPrimaryKey;
+    private String isPrimaryKey;
 
     @Column(name = "flg_display_value")
-    private FlagYesNo isDisplayValue;
+    private String isDisplayValue;
 
     @Column(name = "flg_edit_allowed")
-    private FlagYesNo isEditAllowed;
+    private String isEditAllowed;
 
 }

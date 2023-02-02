@@ -20,7 +20,7 @@ public class MasterTableService {
 
     public List<MasterTableDTO> getAllTableNames() {
         return repository.findByCodRecordStatus(CodRecordStatus.A.name()).stream().
-                map(table -> MasterTableDTO.builder().tableName(table.getTableName()).tableDescription(table.getTableDesc()).build()).
+                map(table -> MasterTableDTO.builder().tableName(table.getTableName()).tableDesc(table.getTableDesc()).build()).
                 collect(Collectors.toList());
     }
 

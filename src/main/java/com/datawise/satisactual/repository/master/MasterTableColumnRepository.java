@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface MasterTableColumnRepository extends JpaRepository<MasterTableColumnEntity, MasterTableColumnEmbeddedKey> {
-    List<MasterTableColumnEntity> findByTableNameAndCodRecStatus(String tableName, String codRecStatus);
+    List<MasterTableColumnEntity> findByIdTableNameAndIdCodRecStatus(String tableName, String codRecStatus);
 }

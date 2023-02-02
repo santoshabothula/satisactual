@@ -22,7 +22,7 @@ public class MasterTableColumnService {
     private final ModelMapper mapper = new ModelMapper();
 
     public List<MasterTableColumnDTO> getAllColumnsByTableName(String tableName) {
-        return repository.findByTableNameAndCodRecStatus(tableName, CodRecordStatus.A.name()).stream().
+        return repository.findByIdTableNameAndIdCodRecStatus(tableName, CodRecordStatus.A.name()).stream().
                 map(table -> mapper.map(table, MasterTableColumnDTO.class)).
                 collect(Collectors.toList());
     }

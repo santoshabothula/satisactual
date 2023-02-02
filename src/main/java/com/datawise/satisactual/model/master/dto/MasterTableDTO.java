@@ -1,5 +1,6 @@
 package com.datawise.satisactual.model.master.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MasterTableDTO {
 
     @NotBlank
@@ -22,7 +24,7 @@ public class MasterTableDTO {
 
     @NotBlank
     @JsonProperty("txt_table_desc")
-    private String tableDescription;
+    private String tableDesc;
 
     @JsonProperty("txt_code_col_name")
     private String codeColumnName;

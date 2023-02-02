@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/disclosure")
+@CrossOrigin
 public class DisclosureController {
 
     @Autowired

@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/int-rate-code")
+@CrossOrigin
 public class IntRateCodeController {
 
     @Autowired

@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/org-type")
+@CrossOrigin
 public class OrgTypeController {
 
     @Autowired

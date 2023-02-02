@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/prod-certificate")
+@CrossOrigin
 public class ProdCertificateController {
 
     @Autowired

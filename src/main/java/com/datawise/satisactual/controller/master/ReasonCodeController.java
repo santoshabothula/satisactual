@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/reason-code")
+@CrossOrigin
 public class ReasonCodeController {
 
     @Autowired

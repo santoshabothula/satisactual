@@ -9,6 +9,8 @@ import com.datawise.satisactual.model.master.dto.CustomResponse;
 import com.datawise.satisactual.model.master.dto.MakerCheckerDTO;
 import com.datawise.satisactual.repository.master.CountryCodeRepository;
 import com.datawise.satisactual.service.master.CommonMasterService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/country-code")
+@CrossOrigin
 public class CountryCodeController {
 
     @Autowired
@@ -39,16 +42,19 @@ public class CountryCodeController {
     private final ModelMapper mapper = new ModelMapper();
 
     @GetMapping
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<List<CountryCodeDTO>> getActiveAll() {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, CountryCodeDTO.class));
     }
 
     @GetMapping("/{id}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CountryCodeDTO> get(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id.apply(id, CodRecordStatus.A), mapper, CountryCodeDTO.class));
     }
 
     @PostMapping("/save")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> save(@Valid @RequestBody CountryCodeDTO dto) {
         service.save(
                 repository,
@@ -64,6 +70,7 @@ public class CountryCodeController {
     }
 
     @PutMapping("/update")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> update(@Valid @RequestBody CountryCodeDTO dto) {
         service.update(
                 repository,
@@ -79,6 +86,7 @@ public class CountryCodeController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> delete(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
         service.delete(
                 repository,
@@ -95,6 +103,7 @@ public class CountryCodeController {
     }
 
     @PostMapping("/reopen/{id}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> reopen(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
         service.reopen(
                 repository,
@@ -111,6 +120,7 @@ public class CountryCodeController {
     }
 
     @PostMapping("/authorize/{id}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> authorize(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
         service.authorize(
                 repository,

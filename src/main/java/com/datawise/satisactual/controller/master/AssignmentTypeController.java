@@ -9,6 +9,8 @@ import com.datawise.satisactual.model.master.dto.CustomResponse;
 import com.datawise.satisactual.model.master.dto.MakerCheckerDTO;
 import com.datawise.satisactual.repository.master.AssignmentTypeRepository;
 import com.datawise.satisactual.service.master.CommonMasterService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/assignment-type")
+@CrossOrigin
 public class AssignmentTypeController {
 
     @Autowired
@@ -39,16 +42,19 @@ public class AssignmentTypeController {
     private final ModelMapper mapper = new ModelMapper();
 
     @GetMapping
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<List<AssignmentTypeDTO>> getActiveAll() {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, AssignmentTypeDTO.class));
     }
 
     @GetMapping("/{id}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<AssignmentTypeDTO> get(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActive(repository, this.id.apply(id, CodRecordStatus.A), mapper, AssignmentTypeDTO.class));
     }
 
     @PostMapping("/save")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> save(@Valid @RequestBody AssignmentTypeDTO dto) {
         service.save(
                 repository,
@@ -64,6 +70,7 @@ public class AssignmentTypeController {
     }
 
     @PutMapping("/update")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> update(@Valid @RequestBody AssignmentTypeDTO dto) {
         service.update(
                 repository,
@@ -79,6 +86,7 @@ public class AssignmentTypeController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> delete(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
         service.delete(
                 repository,
@@ -95,6 +103,7 @@ public class AssignmentTypeController {
     }
 
     @PostMapping("/reopen/{id}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> reopen(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
         service.reopen(
                 repository,
@@ -111,6 +120,7 @@ public class AssignmentTypeController {
     }
 
     @PostMapping("/authorize/{id}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> authorize(@Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id) {
         service.authorize(
                 repository,

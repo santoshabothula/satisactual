@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/priority-sector-category")
+@CrossOrigin
 public class PrioritySectorCategoryController {
 
     @Autowired

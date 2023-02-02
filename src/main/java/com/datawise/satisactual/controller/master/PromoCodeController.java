@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/promo-code")
+@CrossOrigin
 public class PromoCodeController {
 
     @Autowired

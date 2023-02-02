@@ -29,6 +29,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/user-designation")
+@CrossOrigin
 public class UserDesignationController {
 
     @Autowired

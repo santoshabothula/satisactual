@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/pin-code")
+@CrossOrigin
 public class PinCodeController {
 
     @Autowired

@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/rank")
+@CrossOrigin
 public class RankController {
 
     @Autowired

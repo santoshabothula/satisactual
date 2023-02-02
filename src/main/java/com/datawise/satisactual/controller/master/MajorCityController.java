@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/major-city")
+@CrossOrigin
 public class MajorCityController {
 
     @Autowired

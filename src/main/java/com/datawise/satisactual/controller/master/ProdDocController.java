@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/prod-doc")
+@CrossOrigin
 public class ProdDocController {
 
     @Autowired

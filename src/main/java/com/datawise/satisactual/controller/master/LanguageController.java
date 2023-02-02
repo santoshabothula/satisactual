@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/language")
+@CrossOrigin
 public class LanguageController {
 
     @Autowired

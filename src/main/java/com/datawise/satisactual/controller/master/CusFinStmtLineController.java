@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/cus-fin-stmt-line")
+@CrossOrigin
 public class CusFinStmtLineController {
 
     @Autowired

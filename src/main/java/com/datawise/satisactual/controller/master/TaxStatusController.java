@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/tax-status")
+@CrossOrigin
 public class TaxStatusController {
 
     @Autowired

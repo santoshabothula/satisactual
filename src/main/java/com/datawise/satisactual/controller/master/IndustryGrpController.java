@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/industry-grp")
+@CrossOrigin
 public class IndustryGrpController {
 
     @Autowired

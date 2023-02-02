@@ -29,6 +29,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/training-template-module")
+@CrossOrigin
 public class TrainingTemplateModuleController {
 
     @Autowired

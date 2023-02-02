@@ -9,6 +9,8 @@ import com.datawise.satisactual.model.master.dto.CustomResponse;
 import com.datawise.satisactual.model.master.dto.MakerCheckerDTO;
 import com.datawise.satisactual.repository.master.CovenantCodeRepository;
 import com.datawise.satisactual.service.master.CommonMasterService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/covenant-code")
+@CrossOrigin
 public class CovenantCodeController {
 
     @Autowired
@@ -38,11 +41,13 @@ public class CovenantCodeController {
     private final ModelMapper mapper = new ModelMapper();
 
     @GetMapping
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<List<CovenantCodeDTO>> getActiveAll() {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, CovenantCodeDTO.class));
     }
 
     @GetMapping("/{id}/{date}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CovenantCodeDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {
@@ -50,6 +55,7 @@ public class CovenantCodeController {
     }
 
     @PostMapping("/save")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> save(@Valid @RequestBody CovenantCodeDTO dto) {
         service.save(
                 repository,
@@ -65,6 +71,7 @@ public class CovenantCodeController {
     }
 
     @PutMapping("/update")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> update(@Valid @RequestBody CovenantCodeDTO dto) {
         service.update(
                 repository,
@@ -80,6 +87,7 @@ public class CovenantCodeController {
     }
 
     @DeleteMapping("/delete/{id}/{date}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {
@@ -98,6 +106,7 @@ public class CovenantCodeController {
     }
 
     @PostMapping("/reopen/{id}/{date}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {
@@ -116,6 +125,7 @@ public class CovenantCodeController {
     }
 
     @PostMapping("/authorize/{id}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {

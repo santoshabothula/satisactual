@@ -32,6 +32,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/daily-ccy-rate")
+@CrossOrigin
 public class DailyCcyRateController {
 
     @Autowired

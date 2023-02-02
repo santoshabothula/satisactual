@@ -10,6 +10,8 @@ import com.datawise.satisactual.model.master.dto.MakerCheckerDTO;
 import com.datawise.satisactual.repository.master.ApplicationScoringModelRepository;
 import com.datawise.satisactual.service.master.CommonMasterService;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/application-scoring-models")
+@CrossOrigin
 public class ApplicationScoringModelController {
 
     @Autowired
@@ -43,11 +46,13 @@ public class ApplicationScoringModelController {
     private final String primaryKey = "codAddressType";
 
     @GetMapping
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<List<ApplicationScoringModelDTO>> getActiveAll() {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, ApplicationScoringModelDTO.class));
     }
 
     @GetMapping("/{id}/{date}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<ApplicationScoringModelDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
             @Valid @NotNull @DateTimeFormat(pattern="yyyy-MM-dd") @JsonFormat(pattern="yyyy-MM-dd") @PathVariable("date") LocalDate date
@@ -56,6 +61,7 @@ public class ApplicationScoringModelController {
     }
 
     @PostMapping("/save")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> save(@Valid @RequestBody ApplicationScoringModelDTO dto) {
         service.save(
                 repository,
@@ -71,6 +77,7 @@ public class ApplicationScoringModelController {
     }
 
     @PutMapping("/update")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> update(@Valid @RequestBody ApplicationScoringModelDTO dto) {
         service.update(
                 repository,
@@ -86,6 +93,7 @@ public class ApplicationScoringModelController {
     }
 
     @DeleteMapping("/delete/{id}/{date}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
             @Valid @NotNull @DateTimeFormat(pattern="yyyy-MM-dd") @JsonFormat(pattern="yyyy-MM-dd") @PathVariable("date") LocalDate date
@@ -105,6 +113,7 @@ public class ApplicationScoringModelController {
     }
 
     @PostMapping("/reopen/{id}/{date}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
             @Valid @NotNull @DateTimeFormat(pattern="yyyy-MM-dd") @JsonFormat(pattern="yyyy-MM-dd") @PathVariable("date") LocalDate date
@@ -124,6 +133,7 @@ public class ApplicationScoringModelController {
     }
 
     @PostMapping("/authorize/{id}/{date}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id,
             @Valid @NotNull @DateTimeFormat(pattern="yyyy-MM-dd") @JsonFormat(pattern="yyyy-MM-dd") @PathVariable("date") LocalDate date

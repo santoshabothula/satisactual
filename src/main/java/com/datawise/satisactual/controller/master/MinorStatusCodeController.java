@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/minor-status-code")
+@CrossOrigin
 public class MinorStatusCodeController {
 
     @Autowired

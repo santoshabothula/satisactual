@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/district-code")
+@CrossOrigin
 public class DistrictCodeController {
 
     @Autowired

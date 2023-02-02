@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/socio-econ-class")
+@CrossOrigin
 public class SocioEconClassController {
 
     @Autowired

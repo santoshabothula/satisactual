@@ -29,6 +29,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/department-support-team")
+@CrossOrigin
 public class DepartmentSupportTeamController {
 
     @Autowired

@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/doc-storage-location")
+@CrossOrigin
 public class DocStorageLocationController {
 
     @Autowired

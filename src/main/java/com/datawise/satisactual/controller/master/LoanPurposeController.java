@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/loan-purpose")
+@CrossOrigin
 public class LoanPurposeController {
 
     @Autowired

@@ -29,6 +29,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/dpd-class")
+@CrossOrigin
 public class DpdClassController {
 
     @Autowired

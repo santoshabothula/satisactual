@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/third-party-type")
+@CrossOrigin
 public class ThirdPartyTypeController {
 
     @Autowired

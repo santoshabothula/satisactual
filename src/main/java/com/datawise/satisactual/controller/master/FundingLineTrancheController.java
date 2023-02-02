@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/funding-line-tranche")
+@CrossOrigin
 public class FundingLineTrancheController {
 
     @Autowired

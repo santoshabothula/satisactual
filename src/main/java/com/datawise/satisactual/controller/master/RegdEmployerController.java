@@ -29,6 +29,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/regd-employer")
+@CrossOrigin
 public class RegdEmployerController {
 
     @Autowired

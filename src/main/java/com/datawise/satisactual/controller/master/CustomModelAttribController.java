@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/custom-model-attrib")
+@CrossOrigin
 public class CustomModelAttribController {
 
     @Autowired

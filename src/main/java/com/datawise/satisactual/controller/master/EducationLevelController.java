@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/education-level")
+@CrossOrigin
 public class EducationLevelController {
 
     @Autowired

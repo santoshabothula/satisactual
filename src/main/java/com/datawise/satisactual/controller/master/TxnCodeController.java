@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/txn-code")
+@CrossOrigin
 public class TxnCodeController {
 
     @Autowired

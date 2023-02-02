@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/training-template")
+@CrossOrigin
 public class TrainingTemplateController {
 
     @Autowired

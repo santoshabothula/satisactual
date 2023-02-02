@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/cust-attribute")
+@CrossOrigin
 public class CustAttributeController {
 
     @Autowired

@@ -9,6 +9,8 @@ import com.datawise.satisactual.model.master.dto.CustomResponse;
 import com.datawise.satisactual.model.master.dto.MakerCheckerDTO;
 import com.datawise.satisactual.repository.master.CreditOfficerLevelRepository;
 import com.datawise.satisactual.service.master.CommonMasterService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/credit-officer-level")
+@CrossOrigin
 public class CreditOfficerLevelController {
 
     @Autowired
@@ -38,11 +41,13 @@ public class CreditOfficerLevelController {
     private final ModelMapper mapper = new ModelMapper();
 
     @GetMapping
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<List<CreditOfficerLevelDTO>> getActiveAll() {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, CreditOfficerLevelDTO.class));
     }
 
     @GetMapping("/{id}/{date}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CreditOfficerLevelDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {
@@ -50,6 +55,7 @@ public class CreditOfficerLevelController {
     }
 
     @PostMapping("/save")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> save(@Valid @RequestBody CreditOfficerLevelDTO dto) {
         service.save(
                 repository,
@@ -65,6 +71,7 @@ public class CreditOfficerLevelController {
     }
 
     @PutMapping("/update")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> update(@Valid @RequestBody CreditOfficerLevelDTO dto) {
         service.update(
                 repository,
@@ -80,6 +87,7 @@ public class CreditOfficerLevelController {
     }
 
     @DeleteMapping("/delete/{id}/{date}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {
@@ -98,6 +106,7 @@ public class CreditOfficerLevelController {
     }
 
     @PostMapping("/reopen/{id}/{date}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {
@@ -116,6 +125,7 @@ public class CreditOfficerLevelController {
     }
 
     @PostMapping("/authorize/{id}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("id") String id
     ) {

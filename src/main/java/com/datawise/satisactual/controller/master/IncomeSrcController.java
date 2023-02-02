@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/income-src")
+@CrossOrigin
 public class IncomeSrcController {
 
     @Autowired

@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/panchayat-code")
+@CrossOrigin
 public class PanchayatCodeController {
 
     @Autowired

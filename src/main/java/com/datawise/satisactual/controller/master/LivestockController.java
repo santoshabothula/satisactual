@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/livestock")
+@CrossOrigin
 public class LivestockController {
 
     @Autowired

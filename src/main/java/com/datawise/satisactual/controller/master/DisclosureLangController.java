@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/disclosure-lang")
+@CrossOrigin
 public class DisclosureLangController {
 
     @Autowired

@@ -9,6 +9,8 @@ import com.datawise.satisactual.model.master.dto.MakerCheckerDTO;
 import com.datawise.satisactual.model.master.dto.VehicleModelDTO;
 import com.datawise.satisactual.repository.master.VehicleModelRepository;
 import com.datawise.satisactual.service.master.CommonMasterService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/vehicle-model")
+@CrossOrigin
 public class VehicleModelController {
 
     @Autowired
@@ -38,11 +41,13 @@ public class VehicleModelController {
     private final ModelMapper mapper = new ModelMapper();
 
     @GetMapping
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<List<VehicleModelDTO>> getActiveAll() {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, VehicleModelDTO.class));
     }
 
     @GetMapping("/{model}/{make}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<VehicleModelDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("model") String model,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("make") String make
@@ -51,6 +56,7 @@ public class VehicleModelController {
     }
 
     @PostMapping("/save")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> save(@Valid @RequestBody VehicleModelDTO dto) {
         service.save(
                 repository,
@@ -66,6 +72,7 @@ public class VehicleModelController {
     }
 
     @PutMapping("/update")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> update(@Valid @RequestBody VehicleModelDTO dto) {
         service.update(
                 repository,
@@ -81,6 +88,7 @@ public class VehicleModelController {
     }
 
     @DeleteMapping("/delete/{model}/{make}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("model") String model,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("make") String make
@@ -100,6 +108,7 @@ public class VehicleModelController {
     }
 
     @PostMapping("/reopen/{model}/{make}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("model") String model,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("make") String make
@@ -119,6 +128,7 @@ public class VehicleModelController {
     }
 
     @PostMapping("/authorize/{model}/{make}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("model") String model,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("make") String make

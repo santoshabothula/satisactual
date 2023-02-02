@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/funder")
+@CrossOrigin
 public class FunderController {
 
     @Autowired

@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/fin-ratios-ind-benchmark")
+@CrossOrigin
 public class FinRatiosIndBenchmarkController {
 
     @Autowired

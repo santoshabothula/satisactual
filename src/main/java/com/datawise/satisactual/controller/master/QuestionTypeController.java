@@ -9,6 +9,8 @@ import com.datawise.satisactual.model.master.dto.MakerCheckerDTO;
 import com.datawise.satisactual.model.master.dto.QuestionTypeDTO;
 import com.datawise.satisactual.repository.master.QuestionTypeRepository;
 import com.datawise.satisactual.service.master.CommonMasterService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/question-type")
+@CrossOrigin
 public class QuestionTypeController {
 
     @Autowired
@@ -38,11 +41,13 @@ public class QuestionTypeController {
     private final ModelMapper mapper = new ModelMapper();
 
     @GetMapping
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<List<QuestionTypeDTO>> getActiveAll() {
         return ResponseEntity.status(HttpStatus.OK).body(service.getActiveAll(repository, mapper, QuestionTypeDTO.class));
     }
 
     @GetMapping("/{question-type}/{base-question-type}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<QuestionTypeDTO> get(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("question-type") String questionType,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("base-question-type") String baseQuestionType
@@ -51,6 +56,7 @@ public class QuestionTypeController {
     }
 
     @PostMapping("/save")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> save(@Valid @RequestBody QuestionTypeDTO dto) {
         service.save(
                 repository,
@@ -66,6 +72,7 @@ public class QuestionTypeController {
     }
 
     @PutMapping("/update")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> update(@Valid @RequestBody QuestionTypeDTO dto) {
         service.update(
                 repository,
@@ -81,6 +88,7 @@ public class QuestionTypeController {
     }
 
     @DeleteMapping("/delete/{question-type}/{base-question-type}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> delete(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("question-type") String questionType,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("base-question-type") String baseQuestionType
@@ -100,6 +108,7 @@ public class QuestionTypeController {
     }
 
     @PostMapping("/reopen/{question-type}/{base-question-type}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> reopen(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("question-type") String questionType,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("base-question-type") String baseQuestionType
@@ -119,6 +128,7 @@ public class QuestionTypeController {
     }
 
     @PostMapping("/authorize/{question-type}/{base-question-type}")
+    @ApiOperation(value = "Master Table", authorizations = {@Authorization(value="basicAuth")})
     public ResponseEntity<CustomResponse> authorize(
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("question-type") String questionType,
             @Valid @NotBlank @Size(min = 1, max = 4) @PathVariable("base-question-type") String baseQuestionType

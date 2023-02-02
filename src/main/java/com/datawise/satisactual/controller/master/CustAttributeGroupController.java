@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/cust-attribute-group")
+@CrossOrigin
 public class CustAttributeGroupController {
 
     @Autowired

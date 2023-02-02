@@ -30,6 +30,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/currency")
+@CrossOrigin
 public class CurrencyController {
 
     @Autowired

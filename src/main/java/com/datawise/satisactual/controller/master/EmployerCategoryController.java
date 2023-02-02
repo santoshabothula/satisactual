@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/employer-category")
+@CrossOrigin
 public class EmployerCategoryController {
 
     @Autowired

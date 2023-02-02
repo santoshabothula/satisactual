@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/relation")
+@CrossOrigin
 public class RelationController {
 
     @Autowired

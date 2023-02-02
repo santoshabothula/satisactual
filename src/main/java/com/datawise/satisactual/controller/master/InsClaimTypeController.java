@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/ins-claim-type")
+@CrossOrigin
 public class InsClaimTypeController {
 
     @Autowired

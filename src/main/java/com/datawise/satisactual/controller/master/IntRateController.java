@@ -32,6 +32,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/int-rate")
+@CrossOrigin
 public class IntRateController {
 
     @Autowired

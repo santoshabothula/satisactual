@@ -28,6 +28,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/mst/doc-type")
+@CrossOrigin
 public class DocTypeController {
 
     @Autowired

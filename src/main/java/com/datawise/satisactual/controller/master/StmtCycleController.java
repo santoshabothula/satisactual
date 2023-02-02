@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/stmt-cycle")
+@CrossOrigin
 public class StmtCycleController {
 
     @Autowired

@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/time-zone")
+@CrossOrigin
 public class TimeZoneController {
 
     @Autowired

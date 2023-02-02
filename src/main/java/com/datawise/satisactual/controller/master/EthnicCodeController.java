@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/ethnic-code")
+@CrossOrigin
 public class EthnicCodeController {
 
     @Autowired

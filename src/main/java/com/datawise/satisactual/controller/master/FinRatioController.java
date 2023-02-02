@@ -29,6 +29,7 @@ import java.util.function.BiFunction;
 @Validated
 @RestController
 @RequestMapping("/mst/fin-ratio")
+@CrossOrigin
 public class FinRatioController {
 
     @Autowired

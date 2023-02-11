@@ -368,13 +368,24 @@ public class CommonMasterService {
         String idClause = sb.substring(0, sb.lastIndexOf("AND"));
 
         List<Tuple> result = repository.validateAuthorizeId(tableName, idClause, idParams);
-        Optional<Tuple> activeOpt = result.stream().filter(o -> CodRecordStatus.C.name().equalsIgnoreCase(String.valueOf(o.get("cod_rec_status")))).findFirst();
-        idParams.put("checkerId", SecurityContextHolder.getContext().getAuthentication().getName());
-        idParams.put("checkerDate", LocalDateTime.now());
-        if (activeOpt.isPresent()) {
+        boolean isDeleted = result.stream().anyMatch(o -> CodRecordStatus.X.name().equalsIgnoreCase(String.valueOf(o.get("cod_rec_status"))));
+        boolean isReopened = result.stream().anyMatch(o -> CodRecordStatus.R.name().equalsIgnoreCase(String.valueOf(o.get("cod_rec_status"))));
+        if (isReopened) {
+            repository.deleteDeletedRecord(tableName, idClause, idParams);
+            idParams.put("checkerId", SecurityContextHolder.getContext().getAuthentication().getName());
+            idParams.put("checkerDate", LocalDateTime.now());
+            repository.authorize(tableName, idClause, idParams);
+            audit.save(tableName, CodRecordStatus.A.name(), request.getIds());
+        } else if (isDeleted) {
+            repository.deleteActiveRecord(tableName, idClause, idParams);
+            idParams.put("checkerId", SecurityContextHolder.getContext().getAuthentication().getName());
+            idParams.put("checkerDate", LocalDateTime.now());
             repository.deleteAuthorize(tableName, idClause, idParams);
             audit.save(tableName, CodRecordStatus.C.name(), request.getIds());
         } else {
+            repository.deleteActiveRecord(tableName, idClause, idParams);
+            idParams.put("checkerId", SecurityContextHolder.getContext().getAuthentication().getName());
+            idParams.put("checkerDate", LocalDateTime.now());
             repository.authorize(tableName, idClause, idParams);
             audit.save(tableName, CodRecordStatus.A.name(), request.getIds());
         }

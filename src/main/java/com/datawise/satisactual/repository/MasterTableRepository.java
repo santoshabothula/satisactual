@@ -1,6 +1,6 @@
 package com.datawise.satisactual.repository;
 
-import com.datawise.satisactual.entities.master.MasterTableEntity;
+import com.datawise.satisactual.entities.MasterTableEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

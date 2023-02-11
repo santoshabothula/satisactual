@@ -1,5 +1,6 @@
 package com.datawise.satisactual.entities.custom.report;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Data
+@Builder
 @Embeddable
 public class ReportOptionEmbeddedKey implements Serializable {
 

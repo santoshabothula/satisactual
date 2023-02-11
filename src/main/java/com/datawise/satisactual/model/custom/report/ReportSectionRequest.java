@@ -2,6 +2,7 @@ package com.datawise.satisactual.model.custom.report;
 
 import com.datawise.satisactual.model.custom.report.ReportSectionElement;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
+@Builder
 public class ReportSectionRequest {
 
     @NotNull

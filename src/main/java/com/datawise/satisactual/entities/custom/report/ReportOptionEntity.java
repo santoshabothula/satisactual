@@ -2,6 +2,7 @@ package com.datawise.satisactual.entities.custom.report;
 
 
 import com.datawise.satisactual.enums.PageOrientation;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @Entity
 @Table(name = "CMP_REPORT_OPTIONS")
 public class ReportOptionEntity {

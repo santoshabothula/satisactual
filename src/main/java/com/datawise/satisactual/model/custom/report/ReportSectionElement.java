@@ -12,7 +12,7 @@ public class ReportSectionElement {
 
     @NotNull
     @JsonProperty("num_section_sequence")
-    private Integer num_section_sequence;
+    private Integer numSectionSequence;
 
     @NotNull
     @JsonProperty("id_question")

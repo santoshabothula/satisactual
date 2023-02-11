@@ -1,6 +1,7 @@
 package com.datawise.satisactual.entities.custom.report;
 
 import com.datawise.satisactual.enums.AnalysisFormat;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Data
+@Builder
 @Embeddable
 public class ReportSectionQuestionEmbeddedKey implements Serializable {
 

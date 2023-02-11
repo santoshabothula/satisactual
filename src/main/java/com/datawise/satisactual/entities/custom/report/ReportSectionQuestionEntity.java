@@ -1,6 +1,7 @@
 package com.datawise.satisactual.entities.custom.report;
 
 import com.datawise.satisactual.enums.ChartType;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Data
+@Builder
 @Entity
 @Table(name = "CMP_REPORT_SECTION_QUESTIONS")
 public class ReportSectionQuestionEntity {

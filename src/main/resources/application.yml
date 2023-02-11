@@ -53,3 +53,9 @@ spring:
     properties:
       hibernate:
         format_sql: false
+
+foreign-key-relations:
+  mappings:
+    mst_currency:
+      cod_currency:
+        - mst_daily_ccy_rates

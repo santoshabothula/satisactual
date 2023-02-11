@@ -1,5 +1,6 @@
 package com.datawise.satisactual.entities.custom.report;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Data
+@Builder
 @Entity
 @Table(name = "CMP_REPORT_SECTIONS")
 public class ReportSectionEntity {

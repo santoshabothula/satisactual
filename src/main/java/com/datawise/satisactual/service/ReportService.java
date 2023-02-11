@@ -39,9 +39,7 @@ public class ReportService {
                         request.getNotQualifiedSum() + "','" +
                         request.getOutcomeSum() + "','" +
                         request.getIncludeNotSelected() + "','" +
-                        request.getIncludeRatingDetail() + "','" +
                         request.getIncludeSampleSurvey() + "','" +
-                        request.getShowRatingGroups() + "','" +
                         request.getLowRatingBelow() + "','" +
                         request.getHighRatingAbove() + "','" +
                         request.getPinEnuPageOrientation() + "','" +

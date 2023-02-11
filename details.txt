@@ -41,3 +41,4 @@ intellj
 winscp
 tomcat
 
+ java -jar -Dspring.profiles.active=dev satisactual-0.0.1-SNAPSHOT.jar
